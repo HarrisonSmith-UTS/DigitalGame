@@ -1,0 +1,10 @@
+Walls, background, background element/piece/tile,
+
+- Walls (floor/ceiling)
+- Background
+- Obstacles
+- Player
+- Enemies
+- Projectiles
+- Special effects
+- Pickups
