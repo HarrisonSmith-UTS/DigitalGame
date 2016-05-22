@@ -5,7 +5,8 @@ public class PlayerController : MonoBehaviour
 {
 
     public bool grounded = true;
-    public float jumpPower = 100;
+    public bool readyToJump = false;
+    public float jumpPower = 20;
 
 	// Use this for initialization
 	void Start ()
@@ -13,25 +14,43 @@ public class PlayerController : MonoBehaviour
 	
 	}
 	
-	// Update is called once per frame
 	void Update ()
-    {
-        //'Jump'
+    {        
+        //Queue a jump action for when Player next touches land
+        readyToJump = Input.GetButton("Fire1") ?  true : false;
 
-        if (!grounded && GetComponent<Rigidbody2D>().velocity.y == 0)
+        //If grounded, can perform jump
+        if (grounded == true && readyToJump == true)
         {
-            grounded = true;
-        }
-        if (Input.GetButtonDown("Fire1") && grounded == true)
-        {
-            GetComponent<Rigidbody2D>().AddForce(transform.up * jumpPower);
-            grounded = false;
+            jump();
         }
     }
 
-    //Called regularly
-    void fixedUpdate()
+    //Called when collision starts
+    void OnCollisionStart2D()
     {
-        
+
+    }
+
+    //Called constantly when colliding with something
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        //Need to add 'if collision object is top of a floor tile', to allow collisions with other objects
+        //Return to the ground faster than using y speed
+        if (!grounded)
+        {
+            grounded = true;
+
+            if (readyToJump == true)
+                jump();
+        }
+    }
+
+    void jump()
+    {
+        //GetComponent<Rigidbody2D>().AddForce(transform.up * jumpPower);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpPower);
+        grounded = false;
+        readyToJump = false;
     }
 }
