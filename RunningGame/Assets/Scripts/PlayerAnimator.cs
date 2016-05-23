@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerAnimator : MonoBehaviour
 {
-
     public Sprite[] sprites;
     public float framesPerSecond;
     private SpriteRenderer spriteRenderer;

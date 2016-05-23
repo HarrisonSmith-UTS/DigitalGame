@@ -37,12 +37,19 @@ public class PlayerController : MonoBehaviour
     {
         //Need to add 'if collision object is top of a floor tile', to allow collisions with other objects
         //Return to the ground faster than using y speed
+        
+
         if (!grounded)
         {
             grounded = true;
 
             if (readyToJump == true)
                 jump();
+        }
+        //Constantly calls to keep player fixed, because physics is off
+        if (grounded)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1);
         }
     }
 
