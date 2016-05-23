@@ -4,9 +4,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public bool grounded = true;
-    public bool readyToJump = false;
-    public float jumpPower = 20;
+    public bool grounded;
+    public bool readyToJump;
+    public float jumpPower;
 
 	// Use this for initialization
 	void Start ()
