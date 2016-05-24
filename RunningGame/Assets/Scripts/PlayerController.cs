@@ -7,12 +7,13 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
     public bool readyToJump;
     public float jumpPower;
+    private Rigidbody2D rigidBody;
 
 	// Use this for initialization
 	void Start ()
     {
-	
-	}
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
 	
 	void Update ()
     {        
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         {
             jump();
         }
+        
     }
 
     //Called when collision starts
@@ -37,7 +39,6 @@ public class PlayerController : MonoBehaviour
     {
         //Need to add 'if collision object is top of a floor tile', to allow collisions with other objects
         //Return to the ground faster than using y speed
-        
 
         if (!grounded)
         {
@@ -46,17 +47,17 @@ public class PlayerController : MonoBehaviour
             if (readyToJump == true)
                 jump();
         }
-        //Constantly calls to keep player fixed, because physics is off
-        if (grounded)
+        //Constantly calls to keep player fixed in place, because physics is off
+        /*if (grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1);
-        }
+        }*/
     }
 
     void jump()
     {
         //GetComponent<Rigidbody2D>().AddForce(transform.up * jumpPower);
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, jumpPower);
+        rigidBody.velocity = new Vector2(0, jumpPower);
         grounded = false;
         readyToJump = false;
     }
