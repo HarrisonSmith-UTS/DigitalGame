@@ -18,14 +18,18 @@ public class PlayerController : MonoBehaviour
 	void Update ()
     {        
         //Queue a jump action for when Player next touches land
-        readyToJump = Input.GetButton("Fire1") ?  true : false;
+        readyToJump = Input.GetButton("Jump") ?  true : false;
 
         //If grounded, can perform jump
         if (grounded == true && readyToJump == true)
         {
             jump();
         }
-        
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+
+        }
     }
 
     //Called when collision starts

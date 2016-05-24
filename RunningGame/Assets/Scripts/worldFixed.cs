@@ -10,7 +10,8 @@ public class worldFixed : MonoBehaviour {
     void Start ()
     {
         playerPos = player.GetComponent<Transform>();
-        Destroy(gameObject, 3);
+        //HS - commented out for testing. Please remove this later as necessary
+        //Destroy(gameObject, 3);
     }
 	
 	// Update is called once per frame
