@@ -10,7 +10,7 @@ public class spriteAnimator : MonoBehaviour
     public Sprite[] jumpAttackSprites;
     public float framesPerSecond;
 
-    public bool attackAnimate;
+    private bool animateAttack;
 
     private SpriteRenderer spriteRenderer;
 
@@ -25,7 +25,7 @@ public class spriteAnimator : MonoBehaviour
     {
         int index = 0;
         //attacking?
-        if (attackAnimate)
+        if (animateAttack)
         {
             if (index < attackSprites.Length -1)
             {
@@ -52,11 +52,11 @@ public class spriteAnimator : MonoBehaviour
     void attack()
     {
         //Switches to attack sprites until defined
-        attackAnimate = true;
+        animateAttack = true;
     }
 
     void endAttack()
     {
-        attackAnimate = false;
+        animateAttack = false;
     }
 }
