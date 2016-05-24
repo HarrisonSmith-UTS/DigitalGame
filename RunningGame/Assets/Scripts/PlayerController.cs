@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-
+            gameObject.SendMessage("attack");
         }
     }
 
@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
     {
         //Need to add 'if collision object is top of a floor tile', to allow collisions with other objects
         //Return to the ground faster than using y speed
-
         if (!grounded)
         {
             grounded = true;
