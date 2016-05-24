@@ -1,0 +1,269 @@
+fileFormatVersion: 2
+guid: 4bd9c12a668b62f44b3f275bbfa7c52d
+timeCreated: 1463976822
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: runrunning1-Sheetv2-upscale_0
+    21300002: runrunning1-Sheetv2-upscale_1
+    21300004: runrunning1-Sheetv2-upscale_2
+    21300006: runrunning1-Sheetv2-upscale_3
+    21300008: runrunning1-Sheetv2-upscale_4
+    21300010: runrunning1-Sheetv2-upscale_5
+    21300012: runrunning1-Sheetv2-upscale_6
+    21300014: runrunning1-Sheetv2-upscale_7
+    21300016: runrunning1-Sheetv2-upscale_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: runrunning1-Sheetv2-upscale_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -65, y: -66}
+        - {x: -34, y: -111}
+        - {x: 85, y: -111}
+        - {x: 85, y: 19}
+        - {x: 77, y: 69}
+        - {x: 25, y: 111}
+        - {x: -51, y: 111}
+        - {x: -65, y: 106}
+    - name: runrunning1-Sheetv2-upscale_1
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18.180008, y: 111}
+        - {x: -54.819992, y: 111}
+        - {x: -110.81999, y: 68}
+        - {x: -110.81999, y: -37}
+        - {x: -63.819992, y: -108}
+        - {x: 94.18001, y: -108}
+        - {x: 111.18001, y: -64}
+        - {x: 111.18001, y: 38}
+        - {x: 80.18001, y: 86}
+    - name: runrunning1-Sheetv2-upscale_2
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.360016, y: 109}
+        - {x: -54.639984, y: 109}
+        - {x: -75.639984, y: 104}
+        - {x: -113.639984, y: 85}
+        - {x: -113.639984, y: 31}
+        - {x: -91.639984, y: -12}
+        - {x: -113.639984, y: -89}
+        - {x: -113.639984, y: -94}
+        - {x: -85.639984, y: -103}
+        - {x: 75.360016, y: -103}
+        - {x: 92.360016, y: -100}
+        - {x: 112.360016, y: -94}
+        - {x: 112.360016, y: 11}
+        - {x: 96.360016, y: 51}
+    - name: runrunning1-Sheetv2-upscale_3
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 83.54004, y: -46}
+        - {x: 74.54004, y: 30}
+        - {x: 24.54004, y: 109}
+        - {x: -48.45996, y: 109}
+        - {x: -63.45996, y: 101}
+        - {x: -63.45996, y: -44}
+        - {x: -53.45996, y: -103}
+        - {x: 42.54004, y: -103}
+        - {x: 85.54004, y: -74}
+        - {x: 86.54004, y: -70}
+        - {x: 86.54004, y: -49}
+    - name: runrunning1-Sheetv2-upscale_4
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.720032, y: -87}
+        - {x: 25.720032, y: -85}
+        - {x: 25.720032, y: -88}
+        - {x: 22.720032, y: -88}
+        - {x: 20.720032, y: -90}
+        - {x: 20.720032, y: -106}
+        - {x: 19.720032, y: -111}
+        - {x: 103.72003, y: -111}
+        - {x: 103.72003, y: -25}
+        - {x: 50.72003, y: 111}
+        - {x: -64.27997, y: 111}
+        - {x: -67.27997, y: 108}
+        - {x: -67.27997, y: -9}
+        - {x: -21.279968, y: -111}
+        - {x: 2.7200317, y: -111}
+        - {x: 9.720032, y: -105}
+        - {x: 20.720032, y: -91}
+        - {x: 20.720032, y: -87}
+    - name: runrunning1-Sheetv2-upscale_5
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7.4000244, y: 111}
+        - {x: -65.599976, y: 111}
+        - {x: -94.599976, y: 30}
+        - {x: -103.599976, y: -21}
+        - {x: -103.599976, y: -44}
+        - {x: -62.599976, y: -86}
+        - {x: -37.599976, y: -90}
+        - {x: -2.5999756, y: -56}
+        - {x: 77.400024, y: -108}
+        - {x: 98.400024, y: -108}
+        - {x: 98.400024, y: -17}
+        - {x: 23.400024, y: 107}
+    - name: runrunning1-Sheetv2-upscale_6
+      rect:
+        serializedVersion: 2
+        x: 1842
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 50.08008, y: 53}
+        - {x: 55.08008, y: 73}
+        - {x: 9.080078, y: 111}
+        - {x: -109.91992, y: 111}
+        - {x: -109.91992, y: -87}
+        - {x: -1.9199219, y: -87}
+        - {x: 114.08008, y: -40}
+        - {x: 114.08008, y: -5}
+        - {x: 76.08008, y: 32}
+    - name: runrunning1-Sheetv2-upscale_7
+      rect:
+        serializedVersion: 2
+        x: 2149
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -91.73999, y: 109}
+        - {x: -103.73999, y: 77}
+        - {x: -103.73999, y: -69}
+        - {x: -74.73999, y: -93}
+        - {x: 30.26001, y: -93}
+        - {x: 102.26001, y: -79}
+        - {x: 103.26001, y: -77}
+        - {x: 103.26001, y: -20}
+        - {x: 24.26001, y: 109}
+      - - {x: -113.73999, y: -10}
+        - {x: -113.73999, y: -30}
+        - {x: -110.73999, y: -30}
+        - {x: -108.73999, y: -28}
+        - {x: -108.73999, y: -12}
+        - {x: -110.73999, y: -10}
+    - name: runrunning1-Sheetv2-upscale_8
+      rect:
+        serializedVersion: 2
+        x: 2456
+        y: 0
+        width: 307
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15.440063, y: 109}
+        - {x: -62.559937, y: 109}
+        - {x: -66.55994, y: 108}
+        - {x: -66.55994, y: -108}
+        - {x: 75.44006, y: -108}
+        - {x: 78.44006, y: -102}
+        - {x: 78.44006, y: -26}
+        - {x: 40.440063, y: 47}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
