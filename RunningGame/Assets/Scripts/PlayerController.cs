@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            //problem: this is not reaching the object below (the attack object)
+            //Passes it over to the 'attack' controller
             gameObject.SendMessage("attack");
         }
     }

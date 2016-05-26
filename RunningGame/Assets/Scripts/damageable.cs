@@ -19,12 +19,19 @@ public class damageable : MonoBehaviour {
             //gameObject.SendMessage()
 
             //Destroys the object in 1 second
+            //Should probably do a more advanced setting that will animate the 'destruction'
+                //Could call a destroy method for each object if it exists
+
+            //Basic:
             DestroyObject(gameObject, 1);
         }
 	}
 
-    void takeDamage()
+    void takeDamage(float damage)
     {
+        //Other variables in here such as shielding, powerups etc?
 
+        //Basic:
+        health = health - damage;
     }
 }
