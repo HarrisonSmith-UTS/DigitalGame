@@ -5,36 +5,35 @@ using System.Collections;
 //Needs to be specific to an attack
 public class doesDamage : MonoBehaviour
 {
+    //Private timing variables
     private bool attacking;
-    private Collider2D hitbox;
-
-    public float damage;
-    //The time an attack will last in seconds. 0 = no specified time.
-    //Not in parent object
-    public float attackTime;
     private float attackTimer = 0;
+
+    //Attack attributes
+    public float damage;
     public bool destroyAttackOnCollision;
     public bool stopAttackOnCollision;
+    //Time that attack will last in seconds
+    public float attackTime;
 
-	// Use this for initialization
-	void Start ()
+    //Determines the sprites that the top level animator will use for animations
+    public Sprite[] attackSprites;
+
+    private Collider2D hitbox;
+
+    // Use this for initialization
+    void Start ()
     {
         //Should select the first Collider2D in the instance
         hitbox = GetComponent<Collider2D>();
         hitbox.enabled = false;
-
-        if (attackTime != 0)
-        {
-            //Destroy(gameObject, attackTime);
-            //this should disable the attack
-            //unless it is a projectile which lasts for a certain amount of time before destroying
-        }
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-	    if (attacking)
+        //Determines how long the attack should last
+	    if (attacking && attackTime != 0)
         {
             if (attackTimer > 0)
             {
@@ -42,7 +41,6 @@ public class doesDamage : MonoBehaviour
             }
             else
             {
-                attacking = false;
                 stopAttack();
             }
         }
@@ -52,10 +50,11 @@ public class doesDamage : MonoBehaviour
     {
         attacking = true;
         hitbox.enabled = true;
-        //start attack timer?
+        attackTimer = attackTime;
+        SendMessageUpwards("startSpecialAnim", attackSprites);
     }
 
-    void onCollisionEnter2D(Collision2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
         //Calls the 'take damage' function on the colliding object
         coll.gameObject.SendMessage("takeDamage", damage);
@@ -71,26 +70,14 @@ public class doesDamage : MonoBehaviour
         }
     }
 
-    void onTriggerEnter2D(Collider2D other)
-    {
-        other.gameObject.SendMessage("takeDamage", damage);
-
-        if (destroyAttackOnCollision)
-        {
-            stopAttack();
-            Destroy(gameObject);
-        }
-        else if (stopAttackOnCollision)
-        {
-            stopAttack();
-        }
-    }
-
     void stopAttack()
     {
         //Disable this game object's collider
+        attacking = false;
         hitbox.enabled = false;
+        SendMessageUpwards("endSpecial Anim");
         SendMessageUpwards("endAttack");
+
     }
 
     //May not need this?
