@@ -27,11 +27,11 @@ public class spriteAnimator : MonoBehaviour
         //attacking?
         if (animateAttack)
         {
-            if (index < attackSprites.Length -1)
+            if (index < attackSprites.Length-1)
             {
                 //increment as normal
                 index = (int)(Time.timeSinceLevelLoad * framesPerSecond);
-                index = index % runSprites.Length;
+                index = index % attackSprites.Length;
                 spriteRenderer.sprite = attackSprites[index];
             }
             else

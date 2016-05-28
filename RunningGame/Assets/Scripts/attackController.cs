@@ -26,8 +26,7 @@ public class attackController : MonoBehaviour
     {
         //enable child object hitbox?
         //attackObj.SendMessage("startAttack");
-
-        BroadcastMessage("startAttack");
+        //HS - replaced with a broadcast in playerController
 
         //Later: Holds an array of gameObjects for different attacks?
 

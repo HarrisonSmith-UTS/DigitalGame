@@ -20,9 +20,10 @@ public class damageable : MonoBehaviour {
 
             //Destroys the object in 1 second
             //Should probably do a more advanced setting that will animate the 'destruction'
-                //Could call a destroy method for each object if it exists
+            //Could call a destroy method for each object if it exists
 
             //Basic:
+            print("OBJECT DESTROYED");
             DestroyObject(gameObject, 1);
         }
 	}
@@ -33,5 +34,7 @@ public class damageable : MonoBehaviour {
 
         //Basic:
         health = health - damage;
+        print("TOOK DAMAGE!");
+
     }
 }

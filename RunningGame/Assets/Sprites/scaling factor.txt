@@ -1,0 +1,14 @@
+scaling factor:
+
+x6.9767
+
+698% of original 'pixel perfect' image
+
+
+'43 pixels' high
+
+
+==Unity==
+To fit 1 Unity unit:
+70x70 had to upscale to: 100x100
+Unity units are 100 pixels per unit.

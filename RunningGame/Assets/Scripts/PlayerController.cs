@@ -28,9 +28,17 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            //problem: this is not reaching the object below (the attack object)
-            //Passes it over to the 'attack' controller
-            gameObject.SendMessage("attack");
+            //Gets picked up by the attack controller
+            //gameObject.SendMessage("attack");
+            //Sends message to everything in and under this gameObject (sprite animator, doesDamage)
+            BroadcastMessage("startAttack");
+
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            //TEMPORARY:
+            BroadcastMessage("endAttack");
         }
     }
 
