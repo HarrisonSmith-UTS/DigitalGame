@@ -23,11 +23,10 @@ public class obstacleController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        //Calls the 'take damage' function on the colliding object
-        coll.gameObject.SendMessage("takeDamage", damage);
-
+        //Calls the 'take damage' function on the player
         if (destroyOnPlayerColl && coll.gameObject.tag == "Player")
         {
+            coll.gameObject.SendMessage("takeDamage", damage);
             Destroy(gameObject);
         }
     }
