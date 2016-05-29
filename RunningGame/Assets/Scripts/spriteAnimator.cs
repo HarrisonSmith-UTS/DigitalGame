@@ -82,7 +82,6 @@ public class spriteAnimator : MonoBehaviour
             index = index % sprites.Length;
             spriteRenderer.sprite = sprites[index];
         }
-
         //Controls timer for animations
         animTimer += Time.deltaTime;
 
