@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             //TEMPORARY:
-            BroadcastMessage("stopAttack");
+            BroadcastMessage("endAttack");
         }
     }
 

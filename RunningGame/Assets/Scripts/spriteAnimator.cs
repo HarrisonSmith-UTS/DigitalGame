@@ -3,69 +3,60 @@ using System.Collections;
 
 public class spriteAnimator : MonoBehaviour
 {
-    //Should be set to standing or running sprites
-    public Sprite[] defaultSprites;
-
-    //Test - to see if this can replace the runSprites
-    private Sprite[] sprites;
-
+    public Sprite[] runSprites;
+    public Sprite[] attackSprites;
+    public Sprite[] jumpSprites;
+    //Not sure if this is needed yet:
+    public Sprite[] jumpAttackSprites;
     public float framesPerSecond;
 
-    //private bool animateAttack;
-    private bool stopOnLastFrame;
+    private bool animateAttack;
 
     private SpriteRenderer spriteRenderer;
-
 
     // Use this for initialization
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        sprites = defaultSprites;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Loops through sprites array
         int index = 0;
-        if (stopOnLastFrame)
-        //Animates until the last frame is hit, and freezes on that
+        //attacking?
+        if (animateAttack)
         {
-            if (index < (sprites.Length - 1))
+            if (index < attackSprites.Length-1)
             {
+                //increment as normal
                 index = (int)(Time.timeSinceLevelLoad * framesPerSecond);
-                index = index % sprites.Length;
-                spriteRenderer.sprite = sprites[index];
+                index = index % attackSprites.Length;
+                spriteRenderer.sprite = attackSprites[index];
             }
             else
             {
-                spriteRenderer.sprite = sprites[sprites.Length - 1];
+                //stay on the last frame until the attack ends
+                spriteRenderer.sprite = attackSprites[attackSprites.Length - 1];
             }
         }
         else
-        //Normal continuous sprite animation
+        //Running
         {
             index = (int)(Time.timeSinceLevelLoad * framesPerSecond);
-            index = index % sprites.Length;
-            spriteRenderer.sprite = sprites[index];
+            index = index % runSprites.Length;
+            spriteRenderer.sprite = runSprites[index];
         }
-        
-        
     }
 
-    void startSpecialAnim(Sprite[] animSprites)
+    void startAttack()
     {
         //Switches to attack sprites until defined
-        //animateAttack = true;
-        stopOnLastFrame = true;
-        this.sprites = animSprites;
+        animateAttack = true;
     }
 
-    void endSpecialAnim()
+    void endAttack()
     {
-        //animateAttack = false;
-        stopOnLastFrame = false;
-        sprites = defaultSprites;
+        animateAttack = false;
     }
 }

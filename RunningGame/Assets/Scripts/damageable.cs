@@ -24,26 +24,17 @@ public class damageable : MonoBehaviour {
 
             //Basic:
             print("OBJECT DESTROYED");
-
-            //Needs to be timed
-
-            //Animation for destruction
-            DestroyObject(gameObject);
+            DestroyObject(gameObject, 1);
         }
 	}
 
-    //
     void takeDamage(float damage)
     {
         //Other variables in here such as shielding, powerups etc?
 
         //Basic:
         health = health - damage;
-    }
-
-    //Called when a destroyed object will be destroyed
-    void destroy()
-    {
+        print("TOOK DAMAGE!");
 
     }
 }
