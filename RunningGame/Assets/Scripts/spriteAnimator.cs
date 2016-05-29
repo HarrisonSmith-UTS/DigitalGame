@@ -87,7 +87,7 @@ public class spriteAnimator : MonoBehaviour
 
         if (invulnAnimate)
         {
-            enabled = !enabled;
+            spriteRenderer.enabled = !enabled;
         }
         
     }
@@ -111,7 +111,7 @@ public class spriteAnimator : MonoBehaviour
         animTimer = 0;
     }
 
-    void toggleInvulnAnim(bool enabled)
+    void enableInvulnAnim(bool enabled)
     {
         invulnAnimate = enabled;
     }

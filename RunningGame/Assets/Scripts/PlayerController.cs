@@ -5,8 +5,15 @@ public class PlayerController : MonoBehaviour
 {
 
     public bool grounded;
-    public bool readyToJump;
+    public bool jumpButton;
     public float jumpPower;
+    public float flyPower;
+
+    public float fuelDepleteRate;
+
+    public float maxFuel;
+    private float fuel;
+
     private Rigidbody2D rigidBody;
 
 	// Use this for initialization
@@ -18,12 +25,21 @@ public class PlayerController : MonoBehaviour
 	void Update ()
     {        
         //Queue a jump action for when Player next touches land
-        readyToJump = Input.GetButton("Jump") ?  true : false;
+        jumpButton = Input.GetButton("Jump") ?  true : false;
 
         //If grounded, can perform jump
-        if (grounded == true && readyToJump == true)
+        if (jumpButton == true)
         {
-            jump();
+            if (grounded == true)
+            {
+                jump();
+            }
+            else if (fuel > 0)
+            {
+                hover();
+                fuel -= Time.deltaTime * fuelDepleteRate;
+                print("FUEL: " + fuel);
+            }
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -46,18 +62,12 @@ public class PlayerController : MonoBehaviour
     {
         //Need to add 'if collision object is top of a floor tile', to allow collisions with other objects
         //Return to the ground faster than using y speed
-        if (!grounded)
+        //When grounded
+        if (!grounded && coll.gameObject.tag == "Platform")
         {
             grounded = true;
-
-            if (readyToJump == true)
-                jump();
+            fuel = maxFuel;
         }
-        //Constantly calls to keep player fixed in place, because physics is off
-        /*if (grounded)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1);
-        }*/
     }
 
     void jump()
@@ -65,6 +75,13 @@ public class PlayerController : MonoBehaviour
         //GetComponent<Rigidbody2D>().AddForce(transform.up * jumpPower);
         rigidBody.velocity = new Vector2(0, jumpPower);
         grounded = false;
-        readyToJump = false;
+        //jumpButton = false;
+    }
+
+    void hover()
+    {
+        //rigidBody.AddForce(transform.up * flyPower);
+        rigidBody.velocity = new Vector2(0, flyPower);
+        grounded = false;
     }
 }

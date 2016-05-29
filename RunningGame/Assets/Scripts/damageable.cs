@@ -22,10 +22,10 @@ public class damageable : MonoBehaviour {
         if (invulnTimer > 0)
         {
             invulnTimer -= Time.deltaTime;
-            
         }
         else if (invulnTime != 0 && invulnTimer <= 0)
         {
+            //Invulnerability worn off
             invulnerable = false;
             gameObject.SendMessage("enableInvulnAnim", false);
         }
@@ -51,7 +51,6 @@ public class damageable : MonoBehaviour {
         if (invulnTime != 0)
         {
             invulnTimer = invulnTime;
-            //Put stuff here for invulnerability animation?
             gameObject.SendMessage("enableInvulnAnim", true);
         }
     }
