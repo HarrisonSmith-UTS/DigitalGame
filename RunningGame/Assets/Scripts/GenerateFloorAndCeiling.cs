@@ -13,7 +13,7 @@ public class GenerateFloorAndCeiling : MonoBehaviour
     //Need to move these to their respective objects
     //public GameObject mainCam;
     public GameObject player;
-    public Transform playerPos;
+    private Transform playerPos;
 
 	// Use this for initialization
 	void Start ()

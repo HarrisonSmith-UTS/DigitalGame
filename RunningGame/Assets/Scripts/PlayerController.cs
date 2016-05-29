@@ -32,13 +32,6 @@ public class PlayerController : MonoBehaviour
             //gameObject.SendMessage("attack");
             //Sends message to everything in and under this gameObject (sprite animator, doesDamage)
             BroadcastMessage("startAttack");
-
-        }
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            //TEMPORARY:
-            BroadcastMessage("stopAttack");
         }
     }
 

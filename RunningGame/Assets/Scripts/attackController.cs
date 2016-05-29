@@ -1,37 +1,91 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Attached to main gameObject, controls attack start and stop
-//Recieves input from the input controller, controls all attacks
-//Does not handle specific attack info, that is on a child attack class
+//Uses the collider of the gameObject to send damage messages to the collided object
+//Needs to be specific to an attack
 public class attackController : MonoBehaviour
 {
-    GameObject attackObj;
+    //Private timing variables
+    private bool attacking;
+    private float attackTimer = 0;
+
+    //Attack attributes
+    public float damage;
+    public bool destroyObjectOnCollision;
+    public bool stopAttackOnCollision;
+    //Time that attack will last in seconds
+    public float attackTime;
+
+    //Determines the sprites that the top level animator will use for animations
+    public Sprite[] attackSprites;
+
+    private Collider2D hitbox;
 
     // Use this for initialization
     void Start ()
     {
-        attackObj = transform.FindChild("player_sword_attack").gameObject;
-	}
+        //Should select the first Collider2D in the instance
+        hitbox = GetComponent<Collider2D>();
+        if (attackTime != 0)
+        {
+            hitbox.enabled = false;
+        }
+        else
+        {
+            hitbox.enabled = true;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //When attack ends:
-        //BroadcastMessage("endAttack");
+        //Determines how long the attack should last
+	    if (attacking && attackTime != 0)
+        {
+            if (attackTimer > 0)
+            {
+                attackTimer -= Time.deltaTime;
+            }
+            else
+            {
+                stopAttack();
+            }
+        }
 	}
 
-    //Defines what happens when the gameObject initiates an attack
-    void attack(/*string attackName*/)
+    void startAttack()
     {
-        //enable child object hitbox?
-        //attackObj.SendMessage("startAttack");
-        //HS - replaced with a broadcast in playerController
+        attacking = true;
+        hitbox.enabled = true;
+        attackTimer = attackTime;
+        SendMessageUpwards("startSpecialAnim", attackSprites);
+    }
 
-        //Later: Holds an array of gameObjects for different attacks?
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        //Calls the 'take damage' function on the colliding object
+        if (coll.gameObject.tag != "Environment")
+        {
+            coll.gameObject.SendMessage("takeDamage", damage);
+        }
 
+        if (destroyObjectOnCollision)
+        {
+            stopAttack();
+            Destroy(gameObject);
+        }
+        else if (stopAttackOnCollision)
+        {
+            stopAttack();
+        }
+    }
 
-        //start timer to time down the hit?
-
+    void stopAttack()
+    {
+        //Disable this game object's collider
+        attacking = false;
+        hitbox.enabled = false;
+        SendMessageUpwards("endSpecialAnim");
+        SendMessageUpwards("endAttack");
     }
 }

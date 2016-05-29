@@ -8,11 +8,13 @@ public class spriteAnimator : MonoBehaviour
 
     //Test - to see if this can replace the runSprites
     private Sprite[] sprites;
+    private int index;
 
     public float framesPerSecond;
 
     //private bool animateAttack;
     private bool stopOnLastFrame;
+    private bool invulnAnimate;
 
     private SpriteRenderer spriteRenderer;
 
@@ -22,13 +24,14 @@ public class spriteAnimator : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         sprites = defaultSprites;
+        invulnAnimate = false;
+        index = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Loops through sprites array
-        int index = 0;
         if (stopOnLastFrame)
         //Animates until the last frame is hit, and freezes on that
         {
@@ -50,7 +53,11 @@ public class spriteAnimator : MonoBehaviour
             index = index % sprites.Length;
             spriteRenderer.sprite = sprites[index];
         }
-        
+
+        if (invulnAnimate)
+        {
+            enabled = !enabled;
+        }
         
     }
 
@@ -60,6 +67,7 @@ public class spriteAnimator : MonoBehaviour
         //animateAttack = true;
         stopOnLastFrame = true;
         this.sprites = animSprites;
+        index = 0;
     }
 
     void endSpecialAnim()
@@ -67,5 +75,11 @@ public class spriteAnimator : MonoBehaviour
         //animateAttack = false;
         stopOnLastFrame = false;
         sprites = defaultSprites;
+        index = 0;
+    }
+
+    void toggleInvulnAnim(bool enabled)
+    {
+        invulnAnimate = enabled;
     }
 }
