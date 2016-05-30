@@ -7,12 +7,11 @@ public class attackController : MonoBehaviour
 {
     //Private timing variables
     private bool attacking;
-
-    //NOTE COME BACK AND DO TIMERS LATER
-    private bool readyToAttack;
-    private float chargeTimer = 0;
-    private float attackTimer = 0;
-    private float cooldownTimer = 0;
+    private bool charging;
+    private bool damaging;
+    private bool onCooldown;
+    
+    private float timer = 0;
 
     //Attack attributes
     public float damage;
@@ -20,11 +19,13 @@ public class attackController : MonoBehaviour
     public bool stopAttackOnCollision;
     //Time that attack will last in seconds
     public float chargeTime;
-    public float attackTime;
+    public float damageTime;
     public float cooldownTime;
 
     //Determines the sprites that the top level animator will use for animations
-    public Sprite[] attackSprites;
+    public Sprite[] chargeSprites;
+    public Sprite[] damageSprites;
+    public Sprite[] cooldownSprites;
 
     private Collider2D hitbox;
 
@@ -33,7 +34,7 @@ public class attackController : MonoBehaviour
     {
         //Should select the first Collider2D in the instance
         hitbox = GetComponent<Collider2D>();
-        if (attackTime != 0)
+        if (damageTime != 0)
         {
             hitbox.enabled = false;
         }
@@ -44,32 +45,102 @@ public class attackController : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update ()
+	void Update()
     {
-        //Determines how long the attack should last
-	    if (attacking && attackTime != 0)
+        //Could turn these into enums if you get time (look at zombieconga)
+        if (charging && chargeTime != 0)
         {
-            if (attackTimer > 0)
+            if (timer > 0)
             {
-                attackTimer -= Time.deltaTime;
+                timer -= Time.deltaTime;
             }
             else
             {
-                stopAttack();
+                endCharging();
+                startDamage();
             }
         }
-	}
+        else if (damaging && damageTime != 0)
+        {
+            //NOTE: Removed check if 'damageTime == 0'. Should be moved to a projectile class.
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                endAttack();
+            }
+        }
+        else if (onCooldown && cooldownTime != 0)
+        {
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                endAttack();
+            }
+        }
+
+        //OPTIMISED CODE:
+        //Timer will always tick down
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            if (charging)
+            {
+                endCharging();
+                startDamage();
+            }
+
+        }
+
+    }
 
     void startAttack()
     {
-        attacking = true;
+        if (!attacking)
+        {
+            attacking = true;
+            charging = true;
+            timer = chargeTime;
+        }
+        //else, doesn't start the attack
+    }
+
+    void startDamage()
+    {
+        charging = false;
+        damaging = true;
         hitbox.enabled = true;
-        attackTimer = attackTime;
-        SendMessageUpwards("startSpecialAnim", attackSprites);
+        timer = damageTime;
+        SendMessageUpwards("startSpecialAnim", damageSprites);
+    }
+
+    void startCooldown()
+    {
+        damaging = false;
+        hitbox.enabled = false;
+        SendMessageUpwards("startSpecialAnim", cooldownSprites);
+    }
+    
+    void endAttack()
+    {
+        onCooldown = false;
+        attacking = false;
+        SendMessageUpwards("endSpecialAnim");
+        //Not currently needed, may be needed later
+        //SendMessageUpwards("endAttack");
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        //Hitbox must be enabled for this to happen
         //Calls the 'take damage' function on the colliding object
         if (coll.gameObject.tag != "Environment")
         {
@@ -78,26 +149,13 @@ public class attackController : MonoBehaviour
 
         if (destroyObjectOnCollision)
         {
-            stopAttack();
+            endAttack();
             Destroy(gameObject);
         }
         else if (stopAttackOnCollision)
         {
-            stopAttack();
+            endAttack();
         }
     }
-
-    void stopAttack()
-    {
-        attacking = false;
-        hitbox.enabled = false;
-        SendMessageUpwards("endSpecialAnim");
-        //Not currently needed, may be needed later
-        //SendMessageUpwards("endAttack");
-    }
-
-    public bool getAttackReady()
-    {
-        return readyToAttack;
-    }
 }
+ 

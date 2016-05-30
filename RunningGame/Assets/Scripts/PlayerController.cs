@@ -17,10 +17,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
 
+    private jetpackFlames jetpackAnim;
+
 	// Use this for initialization
 	void Start ()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        jetpackAnim = gameObject.GetComponentInChildren<jetpackFlames>();
         fuel = maxFuel;
         fuelBar.initFuelBar(maxFuel);
         fuelBar.updateFuelBar(fuel);
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
         //If grounded, can perform jump
         if (jumpButton == true)
         {
+            jetpackAnim.enableFire();
             if (grounded == true)
             {
                 jump();
@@ -42,6 +46,10 @@ public class PlayerController : MonoBehaviour
             {
                 hover();
             }
+        }
+        else
+        {
+            jetpackAnim.stopFire();
         }
 
         if (Input.GetButtonDown("Fire1"))
