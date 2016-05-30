@@ -47,6 +47,7 @@ public class attackController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+        /*
         //Could turn these into enums if you get time (look at zombieconga)
         if (charging && chargeTime != 0)
         {
@@ -83,7 +84,7 @@ public class attackController : MonoBehaviour
                 endAttack();
             }
         }
-
+        */
         //OPTIMISED CODE:
         //Timer will always tick down
         if (timer > 0)
@@ -94,12 +95,17 @@ public class attackController : MonoBehaviour
         {
             if (charging)
             {
-                endCharging();
                 startDamage();
             }
-
+            else if (damaging)
+            {
+                startCooldown();
+            }
+            else
+            {
+                endAttack();
+            }
         }
-
     }
 
     void startAttack()
@@ -109,6 +115,7 @@ public class attackController : MonoBehaviour
             attacking = true;
             charging = true;
             timer = chargeTime;
+            SendMessageUpwards("startSpecialAnim", chargeSprites);
         }
         //else, doesn't start the attack
     }
