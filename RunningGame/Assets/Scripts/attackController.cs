@@ -7,14 +7,21 @@ public class attackController : MonoBehaviour
 {
     //Private timing variables
     private bool attacking;
+
+    //NOTE COME BACK AND DO TIMERS LATER
+    private bool readyToAttack;
+    private float chargeTimer = 0;
     private float attackTimer = 0;
+    private float cooldownTimer = 0;
 
     //Attack attributes
     public float damage;
     public bool destroyObjectOnCollision;
     public bool stopAttackOnCollision;
     //Time that attack will last in seconds
+    public float chargeTime;
     public float attackTime;
+    public float cooldownTime;
 
     //Determines the sprites that the top level animator will use for animations
     public Sprite[] attackSprites;
@@ -82,10 +89,15 @@ public class attackController : MonoBehaviour
 
     void stopAttack()
     {
-        //Disable this game object's collider
         attacking = false;
         hitbox.enabled = false;
         SendMessageUpwards("endSpecialAnim");
-        SendMessageUpwards("endAttack");
+        //Not currently needed, may be needed later
+        //SendMessageUpwards("endAttack");
+    }
+
+    public bool getAttackReady()
+    {
+        return readyToAttack;
     }
 }

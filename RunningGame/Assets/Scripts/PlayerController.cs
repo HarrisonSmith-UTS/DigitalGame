@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
     public bool jumpButton;
     public float jumpPower;
     public float flyPower;
-
+    public float maxUpwardSpeed;
     public float fuelDepleteRate;
-
     public float maxFuel;
+
+    public fuelBarManager fuelBar;
     private float fuel;
 
     private Rigidbody2D rigidBody;
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
 	void Start ()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        fuel = maxFuel;
+        fuelBar.initFuelBar(maxFuel);
+        fuelBar.updateFuelBar(fuel);
     }
 	
 	void Update ()
@@ -37,16 +41,12 @@ public class PlayerController : MonoBehaviour
             else if (fuel > 0)
             {
                 hover();
-                fuel -= Time.deltaTime * fuelDepleteRate;
-                print("FUEL: " + fuel);
             }
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            //Gets picked up by the attack controller
-            //gameObject.SendMessage("attack");
-            //Sends message to everything in and under this gameObject (sprite animator, doesDamage)
+            //Sends message to everything in and under this gameObject (mainly attack controller)
             BroadcastMessage("startAttack");
         }
     }
@@ -62,26 +62,36 @@ public class PlayerController : MonoBehaviour
     {
         //Need to add 'if collision object is top of a floor tile', to allow collisions with other objects
         //Return to the ground faster than using y speed
-        //When grounded
         if (!grounded && coll.gameObject.tag == "Platform")
         {
             grounded = true;
             fuel = maxFuel;
+            fuelBar.updateFuelBar(fuel);
         }
     }
 
     void jump()
     {
-        //GetComponent<Rigidbody2D>().AddForce(transform.up * jumpPower);
+        //GetComponent<Rigidbody2D>().AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
         rigidBody.velocity = new Vector2(0, jumpPower);
         grounded = false;
-        //jumpButton = false;
     }
 
     void hover()
     {
-        //rigidBody.AddForce(transform.up * flyPower);
-        rigidBody.velocity = new Vector2(0, flyPower);
+        fuel -= Time.deltaTime * fuelDepleteRate;
+        fuelBar.updateFuelBar(fuel);
+
+        print("Velocity: " + rigidBody.velocity.y );
+        if (rigidBody.velocity.y < 10)
+        {
+            //Extra boost before flying upward
+            rigidBody.AddForce(gameObject.transform.up * flyPower);
+        }
+        if (rigidBody.velocity.y < maxUpwardSpeed)
+        {
+            rigidBody.AddForce(gameObject.transform.up * flyPower);
+        }
         grounded = false;
     }
 }

@@ -19,15 +19,18 @@ public class damageable : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (invulnTimer > 0)
+        if (invulnerable)
         {
-            invulnTimer -= Time.deltaTime;
-        }
-        else if (invulnTime != 0 && invulnTimer <= 0)
-        {
-            //Invulnerability worn off
-            invulnerable = false;
-            gameObject.SendMessage("enableInvulnAnim", false);
+            if (invulnTimer > 0)
+            {
+                invulnTimer -= Time.deltaTime;
+            }
+            else if (invulnTime != 0 && invulnTimer <= 0)
+            {
+                //Invulnerability worn off
+                invulnerable = false;
+                gameObject.SendMessage("enableInvulnAnim", false);
+            }
         }
 
 	    if (health <= 0)
@@ -61,7 +64,7 @@ public class damageable : MonoBehaviour {
         if (gameObject.tag == "Player")
         {
             //Game over
-
+            
         }
         print("OBJECT DESTROYED");
         DestroyObject(gameObject);

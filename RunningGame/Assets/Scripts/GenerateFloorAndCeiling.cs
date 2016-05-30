@@ -32,7 +32,8 @@ public class GenerateFloorAndCeiling : MonoBehaviour
     //creates floor tiles as needed
     void FixedUpdate()
     {
-        if (playerPos.position.x - floorCreatePosition.x >= -6)
+        //Need to change this to use the camera instead of player
+        if (playerPos.position.x - floorCreatePosition.x >= -10)
         {
             createFloorTile();
         }

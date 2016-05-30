@@ -3,22 +3,20 @@ using System.Collections;
 
 public class worldFixed : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     private Transform playerPos;
 
     // Use this for initialization
     void Start ()
     {
+        player = GameObject.Find("Player");
         playerPos = player.GetComponent<Transform>();
-        //HS - commented out for testing. Please remove this later as necessary
-        //Destroy(gameObject, 3);
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         Transform transObj = GetComponent<Transform>();
-        //print("Playerpos - this floortile = " + (playerPos.position.x - transObj.position.x));
         if (playerPos.position.x - transObj.position.x  >= 4)
         {
             //print("Destroying object");
