@@ -8,8 +8,10 @@ public class GenerateFloorAndCeiling : MonoBehaviour
     //public float scrollSpeed;
 
     public Vector3 floorCreatePosition;
+    public Vector3 enemyCreatePosition;
 
     public GameObject floorTile;
+
     //Need to move these to their respective objects
     //public GameObject mainCam;
     public GameObject player;
@@ -37,7 +39,6 @@ public class GenerateFloorAndCeiling : MonoBehaviour
         {
             createFloorTile();
         }
-        
         /*if ((int)(Time.timeSinceLevelLoad * scrollSpeed * 4) %  scrollSpeed == 0)
         {
             createFloorTile();
@@ -49,7 +50,7 @@ public class GenerateFloorAndCeiling : MonoBehaviour
     {
         Object newFloorTile = Instantiate(floorTile, floorCreatePosition, Quaternion.identity);
         //GameObject newFloorTileGame = (GameObject)newFloorTile;
-        floorCreatePosition.x++;
+        floorCreatePosition.x += 0.9f;
         //Need to move these to their respective objects
     }
 }

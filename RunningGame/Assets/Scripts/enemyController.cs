@@ -18,9 +18,9 @@ public class enemyController : MonoBehaviour {
     //0 = 100% accurate, 1 = maximum amount of randomness
     public float accuracy;
 
-    //Detection range to begin an attack (or ranged attack)
+    //Detection range in units to begin a ranged attack
     public float detectionRange;
-    //Attack range to begin a melee attack
+    //Attack range in units to begin a close range attack
     public float attackRange;
 
 	// Use this for initialization
@@ -34,13 +34,19 @@ public class enemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        print("ENEMY: Checking if I can attack player");
         float distanceToPlayer = Vector2.Distance(playerTransform.position, thisTransform.position);
 
         if (distanceToPlayer <= attackRange && !attacking)
         {
-            //choose random attack, use it
+            print("ENEMY: Attacking player!");
+            //choose random ground attack, use it
             int index = Random.Range(0, groundAttacks.Length);
             groundAttacks[index].SendMessage("startAttack");
+        }
+        else
+        {
+            print("Couldn't attack player.");
         }
 	}
 
@@ -54,8 +60,9 @@ public class enemyController : MonoBehaviour {
         }
     }
 
-    void doAttack()
+    void isAttacking(bool attacking)
     {
-
+        this.attacking = attacking;
+        
     }
 }

@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
 
     public bool grounded;
+    private bool attacking;
+
     public bool jumpButton;
     public float jumpPower;
     public float flyPower;
@@ -19,14 +21,20 @@ public class PlayerController : MonoBehaviour
 
     private jetpackFlames jetpackAnim;
 
-	// Use this for initialization
-	void Start ()
+
+    private Vector2 newPosition;
+    private Camera mainCamera;
+    private Vector2 cameraPosition;
+
+    // Use this for initialization
+    void Start ()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         jetpackAnim = gameObject.GetComponentInChildren<jetpackFlames>();
         fuel = maxFuel;
         fuelBar.initFuelBar(maxFuel);
         fuelBar.updateFuelBar(fuel);
+        mainCamera = Camera.main;
     }
 	
 	void Update ()
@@ -55,14 +63,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             //Sends message to everything in and under this gameObject (mainly attack controller)
-            BroadcastMessage("startAttack");
+            if (!attacking)
+            {
+                BroadcastMessage("startAttack");
+            }
         }
+
+        EnforceBounds();
     }
 
     //Called when collision starts
-    void OnCollisionStart2D()
+    void OnCollisionStart2D(Collision2D coll)
     {
-
+        if(coll.gameObject.tag == "Platform")
+        {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+        }
     }
 
     //Called constantly when colliding with something
@@ -81,7 +97,7 @@ public class PlayerController : MonoBehaviour
     void jump()
     {
         //GetComponent<Rigidbody2D>().AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-        rigidBody.velocity = new Vector2(0, jumpPower);
+        rigidBody.AddForce(gameObject.transform.up * jumpPower);
         grounded = false;
     }
 
@@ -101,5 +117,37 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(gameObject.transform.up * flyPower);
         }
         grounded = false;
+    }
+
+    void isAttacking(bool attacking)
+    {
+        this.attacking = attacking;
+
+    }
+
+    private void EnforceBounds()
+    {
+        newPosition = transform.position;
+        cameraPosition = mainCamera.transform.position;
+        
+        float xDist = mainCamera.aspect * mainCamera.orthographicSize;
+        float xMax = cameraPosition.x + xDist;
+        float xMin = cameraPosition.x - xDist;
+        float yMax = mainCamera.orthographicSize;
+
+        if (newPosition.x < xMin || newPosition.x > xMax)
+        {
+            newPosition.x = Mathf.Clamp(newPosition.x, xMin, xMax);
+        }
+        // TODO vertical bounds
+        if (newPosition.y < -yMax || newPosition.y > yMax)
+        {
+            newPosition.y = Mathf.Clamp(newPosition.y, -yMax, yMax);
+            //changes y velocity to zero to start falling immediately
+            rigidBody.velocity = new Vector2();
+        }
+
+        // 4
+        transform.position = newPosition;
     }
 }

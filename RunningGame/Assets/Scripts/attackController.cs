@@ -18,13 +18,13 @@ public class attackController : MonoBehaviour
     public bool destroyObjectOnCollision;
     public bool stopAttackOnCollision;
     //Time that attack will last in seconds
-    public float chargeTime;
-    public float damageTime;
-    public float cooldownTime;
 
     //Determines the sprites that the top level animator will use for animations
+    public float chargeTime;
     public Sprite[] chargeSprites;
+    public float damageTime;
     public Sprite[] damageSprites;
+    public float cooldownTime;
     public Sprite[] cooldownSprites;
 
     private Collider2D hitbox;
@@ -47,46 +47,6 @@ public class attackController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        /*
-        //Could turn these into enums if you get time (look at zombieconga)
-        if (charging && chargeTime != 0)
-        {
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                endCharging();
-                startDamage();
-            }
-        }
-        else if (damaging && damageTime != 0)
-        {
-            //NOTE: Removed check if 'damageTime == 0'. Should be moved to a projectile class.
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                endAttack();
-            }
-        }
-        else if (onCooldown && cooldownTime != 0)
-        {
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                endAttack();
-            }
-        }
-        */
-        //OPTIMISED CODE:
-        //Timer will always tick down
         if (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -101,7 +61,7 @@ public class attackController : MonoBehaviour
             {
                 startCooldown();
             }
-            else
+            else if (onCooldown)
             {
                 endAttack();
             }
@@ -110,14 +70,16 @@ public class attackController : MonoBehaviour
 
     void startAttack()
     {
+        //Doesn't start the attack if already attacking.
         if (!attacking)
         {
             attacking = true;
             charging = true;
             timer = chargeTime;
+            //Tells upper objects not to attack because already attacking.
+            SendMessageUpwards("isAttacking", true);
             SendMessageUpwards("startSpecialAnim", chargeSprites);
         }
-        //else, doesn't start the attack
     }
 
     void startDamage()
@@ -131,18 +93,30 @@ public class attackController : MonoBehaviour
 
     void startCooldown()
     {
+        onCooldown = true;
         damaging = false;
         hitbox.enabled = false;
-        SendMessageUpwards("startSpecialAnim", cooldownSprites);
+        timer = cooldownTime;
+        if (cooldownSprites.Length != 0)
+        {
+            SendMessageUpwards("startSpecialAnim", cooldownSprites);
+        }
+        else
+        {
+            SendMessageUpwards("endSpecialAnim");
+        }
     }
     
     void endAttack()
     {
         onCooldown = false;
         attacking = false;
-        SendMessageUpwards("endSpecialAnim");
+        SendMessageUpwards("isAttacking", false);
+        if (cooldownSprites.Length != 0)
+        {
+            SendMessageUpwards("endSpecialAnim");
+        }
         //Not currently needed, may be needed later
-        //SendMessageUpwards("endAttack");
     }
 
     void OnCollisionEnter2D(Collision2D coll)
