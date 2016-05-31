@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 newPosition;
     private Camera mainCamera;
     private Vector2 cameraPosition;
+    public float xOffset;
 
     // Use this for initialization
     void Start ()
