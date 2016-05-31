@@ -8,12 +8,14 @@ public class GenerateFloorAndCeiling : MonoBehaviour
     //public float scrollSpeed;
 
     public Vector3 floorCreatePosition;
+    public Vector3 enemyCreatePosition;
 
     public GameObject floorTile;
+
     //Need to move these to their respective objects
     //public GameObject mainCam;
     public GameObject player;
-    public Transform playerPos;
+    private Transform playerPos;
 
 	// Use this for initialization
 	void Start ()
@@ -32,11 +34,11 @@ public class GenerateFloorAndCeiling : MonoBehaviour
     //creates floor tiles as needed
     void FixedUpdate()
     {
-        if (playerPos.position.x - floorCreatePosition.x >= -6)
+        //Need to change this to use the camera instead of player
+        if (playerPos.position.x - floorCreatePosition.x >= -10)
         {
             createFloorTile();
         }
-        
         /*if ((int)(Time.timeSinceLevelLoad * scrollSpeed * 4) %  scrollSpeed == 0)
         {
             createFloorTile();
@@ -48,7 +50,7 @@ public class GenerateFloorAndCeiling : MonoBehaviour
     {
         Object newFloorTile = Instantiate(floorTile, floorCreatePosition, Quaternion.identity);
         //GameObject newFloorTileGame = (GameObject)newFloorTile;
-        floorCreatePosition.x++;
+        floorCreatePosition.x += 0.9f;
         //Need to move these to their respective objects
     }
 }
