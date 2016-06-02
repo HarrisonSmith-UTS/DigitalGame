@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         fuel -= Time.deltaTime * fuelDepleteRate;
         fuelBar.updateFuelBar(fuel);
 
-        print("Velocity: " + rigidBody.velocity.y );
+        //print("Velocity: " + rigidBody.velocity.y );
         if (rigidBody.velocity.y < 10)
         {
             //Extra boost before flying upward

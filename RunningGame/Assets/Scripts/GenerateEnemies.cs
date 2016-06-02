@@ -16,8 +16,8 @@ public class GenerateEnemies : MonoBehaviour {
     private Transform playerPos;
 
     private float enemyTimer;
-    private float enemySpawnTimeMin;
-    private float enemySpawnTimeMax;
+    public float enemySpawnTimeMin;
+    public float enemySpawnTimeMax;
 
     // Use this for initialization
     void Start()

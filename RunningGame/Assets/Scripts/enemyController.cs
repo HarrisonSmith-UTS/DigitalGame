@@ -34,19 +34,17 @@ public class enemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        print("ENEMY: Checking if I can attack player");
         float distanceToPlayer = Vector2.Distance(playerTransform.position, thisTransform.position);
 
         if (distanceToPlayer <= attackRange && !attacking)
         {
-            print("ENEMY: Attacking player!");
             //choose random ground attack, use it
             int index = Random.Range(0, groundAttacks.Length);
             groundAttacks[index].SendMessage("startAttack");
         }
         else
         {
-            print("Couldn't attack player.");
+
         }
 	}
 
