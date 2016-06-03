@@ -2,17 +2,17 @@
 using System.Collections;
 
 public class worldFixed : MonoBehaviour {
-
+    /*
     private GameObject player;
     private Transform playerPos;
     private Camera mainCam;
-
+    */
     //Code for camera shit
-    public enum ScreenEdge { LEFT, RIGHT, TOP, BOTTOM };
-    private Vector2[] screenEdges;
-    public ScreenEdge startScreenEdge;
-    public float yOffset;
-    public float xOffset;
+    //public enum ScreenEdge { LEFT, RIGHT, TOP, BOTTOM };
+    //private Vector2[] screenEdges;
+    //public ScreenEdge startScreenEdge;
+    //public float yOffset;
+    //public float xOffset;
 
     // Use this for initialization
     void Start()
@@ -30,7 +30,7 @@ public class worldFixed : MonoBehaviour {
 
         //transform.position = newPosition;
     }
-
+    /*
     private void initialiseScreenEdgePositions()
     {
         //Top
@@ -60,7 +60,7 @@ public class worldFixed : MonoBehaviour {
                 return screenEdges[1];
         }
     }
-
+    */
 	// Update is called once per frame
 	void Update ()
     {

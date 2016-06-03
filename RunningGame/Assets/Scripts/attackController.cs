@@ -119,6 +119,26 @@ public class attackController : MonoBehaviour
         //Not currently needed, may be needed later
     }
 
+    void OnTriggerEnter2D(Collision2D coll)
+    {
+        //Hitbox must be enabled for this to happen
+        //Calls the 'take damage' function on the colliding object
+        if (coll.gameObject.tag != "Environment")
+        {
+            coll.gameObject.SendMessage("takeDamage", damage);
+        }
+
+        if (destroyObjectOnCollision)
+        {
+            endAttack();
+            Destroy(gameObject);
+        }
+        else if (stopAttackOnCollision)
+        {
+            endAttack();
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         //Hitbox must be enabled for this to happen

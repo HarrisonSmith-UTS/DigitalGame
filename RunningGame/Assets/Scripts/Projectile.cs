@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour {
 
     public string damagesWhat;
 
-    public Vector2 direction;
+    public Vector3 direction;
     public float speed;
 
     // Use this for initialization
@@ -25,11 +25,30 @@ public class Projectile : MonoBehaviour {
         
     }
 
-    public void Launch(Vector2 aimLocation)
+    public void Launch(Vector3 aimLocation)
     {
-        direction = aimLocation;
-        //direction.Normalize();
+        //direction = aimLocation;
+        //direction = gameObject.transform.position - aimLocation;
+        direction = aimLocation - gameObject.transform.position;
+        direction.Normalize();
         gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed;
+    }
+
+    void OnTriggerEnter2D(Collision2D coll)
+    {
+        //Calls the 'take damage' function on the colliding object
+        if (coll.gameObject.tag == damagesWhat)
+        {
+            coll.gameObject.SendMessage("takeDamage", damage);
+        }
+
+        if (destroyObjectOnCollision)
+        {
+            Destroy(gameObject);
+        }
+        else if (stopAttackOnCollision)
+        {
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
