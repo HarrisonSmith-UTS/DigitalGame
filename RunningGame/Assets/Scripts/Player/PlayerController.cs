@@ -22,10 +22,7 @@ public class PlayerController : MonoBehaviour
     private jetpackFlames jetpackAnim;
 
 
-    private Vector2 newPosition;
-    private Camera mainCamera;
-    private Vector2 cameraPosition;
-    public float xOffset;
+    
 
     // Use this for initialization
     void Start ()
@@ -35,7 +32,6 @@ public class PlayerController : MonoBehaviour
         fuel = maxFuel;
         fuelBar.initFuelBar(maxFuel);
         fuelBar.updateFuelBar(fuel);
-        mainCamera = Camera.main;
     }
 	
 	void Update ()
@@ -70,7 +66,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        EnforceBounds();
     }
 
     //Called when collision starts
@@ -123,32 +118,7 @@ public class PlayerController : MonoBehaviour
     void isAttacking(bool attacking)
     {
         this.attacking = attacking;
-
     }
 
-    private void EnforceBounds()
-    {
-        newPosition = transform.position;
-        cameraPosition = mainCamera.transform.position;
-        
-        float xDist = mainCamera.aspect * mainCamera.orthographicSize;
-        float xMax = cameraPosition.x + xDist;
-        float xMin = cameraPosition.x - xDist;
-        float yMax = mainCamera.orthographicSize;
-
-        if (newPosition.x < xMin || newPosition.x > xMax)
-        {
-            newPosition.x = Mathf.Clamp(newPosition.x, xMin, xMax);
-        }
-        // TODO vertical bounds
-        if (newPosition.y < -yMax || newPosition.y > yMax)
-        {
-            newPosition.y = Mathf.Clamp(newPosition.y, -yMax, yMax);
-            //changes y velocity to zero to start falling immediately
-            rigidBody.velocity = new Vector2();
-        }
-
-        // 4
-        transform.position = newPosition;
-    }
+   
 }

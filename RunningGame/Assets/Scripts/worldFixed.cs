@@ -26,7 +26,9 @@ public class worldFixed : MonoBehaviour {
         initialiseScreenEdgePositions();
 
         //Sets up screen edges
-        transform.position = getCameraEdge(ScreenEdge.RIGHT);
+        newPosition = getCameraEdge(ScreenEdge.RIGHT);
+
+        transform.position = newPosition;
     }
 
     private void initialiseScreenEdgePositions()
