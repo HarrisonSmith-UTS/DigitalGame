@@ -12,7 +12,7 @@ public class RangedAttackController : MonoBehaviour
     private float timer = 0;
 
     //Attack attributes
-    public float damage;
+    //public float damage;
     public bool destroyObjectOnCollision;
     public bool stopAttackOnCollision;
     //Time that attack will last in seconds
@@ -30,8 +30,8 @@ public class RangedAttackController : MonoBehaviour
     public GameObject projectile;
 
     public bool aimAtPlayer;
+    private GameObject player;
     public Vector3 aimPosition;
-
 
     // Use this for initialization
     void Start()
@@ -45,6 +45,14 @@ public class RangedAttackController : MonoBehaviour
         else
         {
             hitbox.enabled = true;
+        }
+    }
+
+    void OnEnable()
+    {
+        if (aimAtPlayer)
+        {
+            player = GameObject.FindWithTag("Player");
         }
     }
 
@@ -90,22 +98,22 @@ public class RangedAttackController : MonoBehaviour
     {
         charging = false;
         damaging = true;
-        hitbox.enabled = true;
         timer = damageTime;
         SendMessageUpwards("startSpecialAnim", damageSprites);
-
+        if (aimAtPlayer)
+        {
+            aimPosition = player.transform.position;
+        }
         //Creates projectile
+        projectile = (GameObject)Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
         projectile.SetActive(true);
-
-        projectile.GetComponent<Projectile>().Launch();
-
+        projectile.GetComponent<Projectile>().Launch(aimPosition);
     }
 
     void startCooldown()
     {
         onCooldown = true;
         damaging = false;
-        hitbox.enabled = false;
         timer = cooldownTime;
         if (cooldownSprites.Length != 0)
         {
@@ -125,27 +133,6 @@ public class RangedAttackController : MonoBehaviour
         if (cooldownSprites.Length != 0)
         {
             SendMessageUpwards("endSpecialAnim");
-        }
-        //Not currently needed, may be needed later
-    }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        //Hitbox must be enabled for this to happen
-        //Calls the 'take damage' function on the colliding object
-        if (coll.gameObject.tag != "Environment")
-        {
-            coll.gameObject.SendMessage("takeDamage", damage);
-        }
-
-        if (destroyObjectOnCollision)
-        {
-            endAttack();
-            Destroy(gameObject);
-        }
-        else if (stopAttackOnCollision)
-        {
-            endAttack();
         }
     }
 }

@@ -5,7 +5,6 @@ public class jetpackFlames : MonoBehaviour {
 
     private ParticleSystem fire;
     private ParticleSystem smoke;
-    private GameObject smokeObject;
 
 	// Use this for initialization
 	void Start()

@@ -17,18 +17,18 @@ public class worldFixed : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        player = GameObject.Find("Player");
-        playerPos = player.GetComponent<Transform>();
+        //player = GameObject.Find("Player");
+        //playerPos = player.GetComponent<Transform>();
 
-        Vector3 newPosition = transform.position;
-        mainCam = Camera.main;
+        //Vector3 newPosition = transform.position;
+        //mainCam = Camera.main;
 
-        initialiseScreenEdgePositions();
+        //initialiseScreenEdgePositions();
 
         //Sets up screen edges
-        newPosition = getCameraEdge(ScreenEdge.RIGHT);
+        //newPosition = getCameraEdge(ScreenEdge.RIGHT);
 
-        transform.position = newPosition;
+        //transform.position = newPosition;
     }
 
     private void initialiseScreenEdgePositions()

@@ -24,7 +24,7 @@ public class enemyController : MonoBehaviour {
     public float attackRange;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
         player = GameObject.Find("Player");
         playerTransform = player.transform;
@@ -32,19 +32,20 @@ public class enemyController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void Update()
     {
         float distanceToPlayer = Vector2.Distance(playerTransform.position, thisTransform.position);
 
-        if (distanceToPlayer <= attackRange && !attacking)
+        if (groundAttacks.Length > 0 && distanceToPlayer <= attackRange && !attacking)
         {
             //choose random ground attack, use it
             int index = Random.Range(0, groundAttacks.Length);
             groundAttacks[index].SendMessage("startAttack");
         }
-        else
+        else if (airAttacks.Length > 0 && distanceToPlayer <= detectionRange && !attacking)
         {
-
+            int index = Random.Range(0, airAttacks.Length);
+            airAttacks[index].SendMessage("startAttack");
         }
 	}
 
