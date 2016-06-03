@@ -28,8 +28,7 @@ public class PlayerRestriction : MonoBehaviour {
         mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
-    void fixedUpdate()
+    void FixedUpdate()
     {
         EnforceBounds();
     }

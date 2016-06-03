@@ -12,7 +12,6 @@ public class jetpackFlames : MonoBehaviour {
         fire = gameObject.GetComponent<ParticleSystem>();
         //will not get the correct one
         smoke = gameObject.GetComponentInChildren<ParticleSystem>();
-        stopFire();
 	}
 	
 	// Update is called once per frame

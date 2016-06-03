@@ -8,6 +8,7 @@ public class EnvironmentGenerator : MonoBehaviour
 
     public GameObject[] environParts;
     private int enIndex;
+    private PooledObject poolScript;
 
     private Camera mainCam;
 
@@ -19,6 +20,8 @@ public class EnvironmentGenerator : MonoBehaviour
         instantiateAll();
 
         enIndex = 0;
+
+        enableObject();
     }
 
     private void instantiateAll()
@@ -43,13 +46,28 @@ public class EnvironmentGenerator : MonoBehaviour
     void calculateCreatePosition()
     {
         //get right-hand side of the 'old' object
-        createPosition.x = createPosition.x + environParts[enIndex].GetComponent<PooledObject>().halfObjectWidth;
+        poolScript = environParts[enIndex].GetComponent<PooledObject>();
 
-        //select a new environment piece
+        createPosition.x = createPosition.x + poolScript.halfObjectWidth;
+
+        //select a new random environment piece
         enIndex = Random.Range(0, environParts.Length);
 
+        //Checks if object is ready to be pooled or not
+        while (environParts[enIndex].activeSelf)
+        {
+            //Chooses another pooled object
+            enIndex++;
+            if (enIndex >= environParts.Length)
+            {
+                enIndex = 0;
+            }
+        }
+
+        poolScript = environParts[enIndex].GetComponent<PooledObject>();
         //Adds half the bounds of the new object
         createPosition.x = createPosition.x + environParts[enIndex].GetComponent<PooledObject>().halfObjectWidth;
+        createPosition.y = poolScript.defaultPosition.y;
     }
 
     //Enables pooled object, figures out where to put it

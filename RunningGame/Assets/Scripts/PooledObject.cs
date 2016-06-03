@@ -5,21 +5,33 @@ public class PooledObject : MonoBehaviour
 {   
     private EnvironmentGenerator environScript;
     public bool specifyObjectWidth;
+    public float objectWidth;
     public float halfObjectWidth;
+
+    public Vector3 defaultPosition;
+
+    public bool inPool;
 
     // Use this for initialization
     void Start()
     {
         if (!specifyObjectWidth)
         {
-            halfObjectWidth = gameObject.GetComponent<Collider2D>().bounds.size.x / 2;
+            objectWidth = gameObject.GetComponent<Collider2D>().bounds.size.x;
         }
+        halfObjectWidth = objectWidth / 2;
+        //defaultPosition = transform.position;
     }
 
     //Allows the environment script to set this object up for generation properly
     public void initialiseEnvironScript(EnvironmentGenerator script)
     {
         environScript = script;
+    }
+    
+    void setInPool(bool setPool)
+    {
+        inPool = setPool;
     }
 
     void OnBecameVisible()
@@ -33,6 +45,7 @@ public class PooledObject : MonoBehaviour
         //Destroy(gameObject);
         //return to pool
         //Somehow notify environment generator?
+        inPool = false;
         environScript.objectBecameInvisible(gameObject);
     }
 }
