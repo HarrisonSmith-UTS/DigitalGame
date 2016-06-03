@@ -28,8 +28,7 @@ public class Projectile : MonoBehaviour {
     public void Launch(Vector2 aimLocation)
     {
         direction = aimLocation;
-        direction.Normalize();
-
+        //direction.Normalize();
         gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed;
     }
 

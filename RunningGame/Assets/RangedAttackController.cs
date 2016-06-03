@@ -52,7 +52,7 @@ public class RangedAttackController : MonoBehaviour
     {
         if (aimAtPlayer)
         {
-            player = GameObject.FindWithTag("Player");
+            player = GameObject.Find("Player");
         }
     }
 
