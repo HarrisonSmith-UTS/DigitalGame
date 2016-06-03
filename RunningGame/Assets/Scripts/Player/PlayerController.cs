@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float fuelDepleteRate;
     public float maxFuel;
 
-    public fuelBarManager fuelBar;
+    public UImanager ui;
     private float fuel;
 
     private Rigidbody2D rigidBody;
@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         jetpackAnim = gameObject.GetComponentInChildren<jetpackFlames>();
         fuel = maxFuel;
-        fuelBar.initFuelBar(maxFuel);
-        fuelBar.updateFuelBar(fuel);
+        ui.initFuelBar(maxFuel);
+        ui.updateFuelBar(fuel);
     }
 	
 	void Update ()
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         {
             grounded = true;
             fuel = maxFuel;
-            fuelBar.updateFuelBar(fuel);
+            ui.updateFuelBar(fuel);
         }
     }
 
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     void hover()
     {
         fuel -= Time.deltaTime * fuelDepleteRate;
-        fuelBar.updateFuelBar(fuel);
+        ui.updateFuelBar(fuel);
 
         //print("Velocity: " + rigidBody.velocity.y );
         if (rigidBody.velocity.y < 10)

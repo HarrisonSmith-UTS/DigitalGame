@@ -16,8 +16,8 @@ public class jetpackFlames : MonoBehaviour {
 
             //Change Foreground to the layer you want it to display on 
             //You could prob. make a public variable for this
-        fire.GetComponent<Renderer>().sortingLayerName = "Foreground";
-        smoke.GetComponent<Renderer>().sortingLayerName = "Foreground";
+        //fire.GetComponent<Renderer>().sortingLayerName = "Foreground";
+        //smoke.GetComponent<Renderer>().sortingLayerName = "Foreground";
     }
 	
 	// Update is called once per frame
@@ -28,13 +28,21 @@ public class jetpackFlames : MonoBehaviour {
 
     public void enableFire()
     {
+        /*
         fire.Play(true);
         smoke.Play(true);
+        */
+        fire.enableEmission = true;
+        smoke.enableEmission = true;
     }
 
     public void stopFire()
     {
+        /*
         fire.Stop();
         smoke.Stop();
+        */
+        fire.enableEmission = false;
+        smoke.enableEmission = false;
     }
 }

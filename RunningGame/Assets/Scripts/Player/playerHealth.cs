@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class damageable : MonoBehaviour {
+public class playerHealth : MonoBehaviour
+{
 
     public float health;
     public float currentHealth;
@@ -11,14 +12,17 @@ public class damageable : MonoBehaviour {
     private float invulnTimer;
     private bool invulnerable;
 
-	// Use this for initialization
-	void Start ()
+    public UImanager ui;
+
+    // Use this for initialization
+    void Start()
     {
         currentHealth = health;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        ui.updateHealthDisplay(health);
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         if (invulnerable)
         {
@@ -33,7 +37,9 @@ public class damageable : MonoBehaviour {
                 gameObject.SendMessage("enableInvulnAnim", false);
             }
         }
-	}
+
+        
+    }
 
     //
     void takeDamage(float damage)
@@ -57,12 +63,21 @@ public class damageable : MonoBehaviour {
             //gameObject.SendMessage()
             die();
         }
+
+        ui.updateHealthDisplay(currentHealth);
     }
 
     //Called when health reaches 0 (i.e. object has 'died')
     void die()
     {
-        //print("OBJECT DESTROYED");
+        if (gameObject.tag == "Player")
+        {
+            //Game over
+            Time.timeScale = 0;
+            //Show game over screen
+            ui.showGameOverScreen();
+        }
+        print("OBJECT DESTROYED");
         DestroyObject(gameObject);
     }
 }
