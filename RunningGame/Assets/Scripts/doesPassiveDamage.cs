@@ -5,7 +5,6 @@ public class doesPassiveDamage : MonoBehaviour {
 
     public float damage;
     public bool destroyObjectOnCollision;
-    public bool stopAttackOnCollision;
 
     public string damages;
 
@@ -32,8 +31,20 @@ public class doesPassiveDamage : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        else if (stopAttackOnCollision)
+    }
+
+    void OnTriggerEnter2D(Collision2D coll)
+    {
+        //Hitbox must be enabled for this to happen
+        //Calls the 'take damage' function on the colliding object
+        if (coll.gameObject.tag == damages)
         {
+            coll.gameObject.SendMessage("takeDamage", damage);
+        }
+
+        if (destroyObjectOnCollision)
+        {
+            Destroy(gameObject);
         }
     }
 }
