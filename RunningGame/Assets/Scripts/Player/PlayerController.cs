@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
 
     private jetpackFlames jetpackAnim;
 
+    private float score;
+    public float scoreRate;
 
+    private float scrollSpeed;
     
 
     // Use this for initialization
@@ -32,6 +35,10 @@ public class PlayerController : MonoBehaviour
         fuel = maxFuel;
         ui.initFuelBar(maxFuel);
         ui.updateFuelBar(fuel);
+        //may need to change this later if continuing on scenes
+        score = 0;
+
+        scrollSpeed = globalConstants.scrollSpeed;
     }
 	
 	void Update ()
@@ -65,7 +72,8 @@ public class PlayerController : MonoBehaviour
                 BroadcastMessage("startAttack");
             }
         }
-
+        score += Time.deltaTime * scrollSpeed;
+        ui.updateScoreDisplay(score);
     }
 
     //Called when collision starts

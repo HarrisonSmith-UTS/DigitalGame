@@ -3,8 +3,8 @@ using System.Collections;
 
 public class jetpackFlames : MonoBehaviour {
 
-    private ParticleSystem fire;
-    private ParticleSystem smoke;
+    public ParticleSystem fire;
+    public ParticleSystem smoke;
 
 	// Use this for initialization
 	void Start()
@@ -13,9 +13,10 @@ public class jetpackFlames : MonoBehaviour {
         //will not get the correct one
         //Should now get the correct one?
         smoke = GameObject.Find("PlayerSmoke").GetComponent<ParticleSystem>();
+        fire = GameObject.Find("PlayerFlames").GetComponent<ParticleSystem>();
 
-            //Change Foreground to the layer you want it to display on 
-            //You could prob. make a public variable for this
+        //Change Foreground to the layer you want it to display on 
+        //You could prob. make a public variable for this
         //fire.GetComponent<Renderer>().sortingLayerName = "Foreground";
         //smoke.GetComponent<Renderer>().sortingLayerName = "Foreground";
     }
@@ -32,17 +33,22 @@ public class jetpackFlames : MonoBehaviour {
         fire.Play(true);
         smoke.Play(true);
         */
+
+        
         fire.enableEmission = true;
         smoke.enableEmission = true;
+        
     }
 
     public void stopFire()
     {
         /*
-        fire.Stop();
-        smoke.Stop();
+        fire.Play(false);
+        fire.Play(false);
         */
+        
         fire.enableEmission = false;
         smoke.enableEmission = false;
+        
     }
 }
