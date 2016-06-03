@@ -4,7 +4,7 @@ using System.Collections;
 public class EnvironGen2 : MonoBehaviour
 {
     public float createPosX;
-    private float createPosY;
+    public float createPosY;
 
     public GameObject[] environParts;
     private GameObject lastCreatedObj;

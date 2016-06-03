@@ -4,6 +4,7 @@ using System.Collections;
 public class damageable : MonoBehaviour {
 
     public float health;
+    public float currentHealth;
 
     //Set to 0 for no invuln time.
     public float invulnTime;
@@ -13,7 +14,7 @@ public class damageable : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-	    
+        currentHealth = health;
 	}
 	
 	// Update is called once per frame
@@ -33,7 +34,7 @@ public class damageable : MonoBehaviour {
             }
         }
 
-	    if (health <= 0)
+	    if (currentHealth <= 0)
         {
             //gameObject.SendMessage()
             die();
@@ -48,7 +49,7 @@ public class damageable : MonoBehaviour {
         //Basic:
         if (!invulnerable)
         {
-            health = health - damage;
+            currentHealth -= damage;
         }
 
         if (invulnTime != 0)

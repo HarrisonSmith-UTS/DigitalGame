@@ -7,6 +7,8 @@ public class doesPassiveDamage : MonoBehaviour {
     public bool destroyObjectOnCollision;
     public bool stopAttackOnCollision;
 
+    public string damages;
+
     // Use this for initialization
     void Start () {
 	
@@ -21,7 +23,7 @@ public class doesPassiveDamage : MonoBehaviour {
     {
         //Hitbox must be enabled for this to happen
         //Calls the 'take damage' function on the colliding object
-        if (coll.gameObject.tag != "Player")
+        if (coll.gameObject.tag == damages)
         {
             coll.gameObject.SendMessage("takeDamage", damage);
         }
