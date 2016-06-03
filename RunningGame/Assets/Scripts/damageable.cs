@@ -65,7 +65,9 @@ public class damageable : MonoBehaviour {
         if (gameObject.tag == "Player")
         {
             //Game over
-            
+            Time.timeScale = 0;
+            //Show game over screen
+            //Switch to menu?
         }
         print("OBJECT DESTROYED");
         DestroyObject(gameObject);

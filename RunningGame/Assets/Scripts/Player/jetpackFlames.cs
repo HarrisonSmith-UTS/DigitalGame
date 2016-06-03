@@ -5,14 +5,21 @@ public class jetpackFlames : MonoBehaviour {
 
     private ParticleSystem fire;
     private ParticleSystem smoke;
+    private GameObject smokeObject;
 
 	// Use this for initialization
 	void Start()
     {
         fire = gameObject.GetComponent<ParticleSystem>();
         //will not get the correct one
-        smoke = gameObject.GetComponentInChildren<ParticleSystem>();
-	}
+        //Should now get the correct one?
+        smoke = GameObject.Find("PlayerSmoke").GetComponent<ParticleSystem>();
+
+            //Change Foreground to the layer you want it to display on 
+            //You could prob. make a public variable for this
+        fire.GetComponent<Renderer>().sortingLayerName = "Foreground";
+        smoke.GetComponent<Renderer>().sortingLayerName = "Foreground";
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -22,8 +29,8 @@ public class jetpackFlames : MonoBehaviour {
 
     public void enableFire()
     {
-        fire.Play();
-        smoke.Play();
+        fire.Play(true);
+        smoke.Play(true);
     }
 
     public void stopFire()

@@ -8,6 +8,7 @@ public class EnvironGen2 : MonoBehaviour
 
     public GameObject[] environParts;
     private GameObject lastCreatedObj;
+    public GameObject startingArea;
     private int enIndex;
     private PooledObject2 poolScript;
 
@@ -19,14 +20,11 @@ public class EnvironGen2 : MonoBehaviour
     {
         mainCam = Camera.main;
         enIndex = 0;
-        createPosY = 0;
 
         rightSideOfCam = mainCam.aspect * mainCam.orthographicSize;
 
         //Creates one object off the bat
-        lastCreatedObj = (GameObject)Instantiate(environParts[enIndex], new Vector3(createPosX, createPosY, 0), Quaternion.identity);
-
-        createObject();
+        lastCreatedObj = (GameObject)Instantiate(startingArea, new Vector3(createPosX, createPosY, 0), Quaternion.identity);
     }
 
     void Update()
@@ -51,7 +49,7 @@ public class EnvironGen2 : MonoBehaviour
         createPosX += poolScript.halfObjectWidth;
 
         //Chooses random object to create
-        enIndex = Random.Range(0, environParts.Length);
+        enIndex = Random.Range(0, environParts.Length - 1);
 
         //Increments by the newly created object
         poolScript = environParts[enIndex].GetComponent<PooledObject2>();
