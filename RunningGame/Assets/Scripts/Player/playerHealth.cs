@@ -55,7 +55,7 @@ public class playerHealth : MonoBehaviour
         if (invulnTime != 0)
         {
             invulnTimer = invulnTime;
-            gameObject.SendMessage("enableInvulnAnim", true);
+            //gameObject.SendMessage("enableInvulnAnim", true);
         }
 
         if (currentHealth <= 0)

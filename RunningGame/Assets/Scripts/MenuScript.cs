@@ -10,4 +10,14 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void chooseRandomScene()
+    {
+        changeScene(globalConstants.sceneNames[Random.Range(0, globalConstants.sceneNames.Length)]);
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
+    }
 }

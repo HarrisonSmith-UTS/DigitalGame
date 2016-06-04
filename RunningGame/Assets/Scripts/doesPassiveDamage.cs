@@ -33,7 +33,7 @@ public class doesPassiveDamage : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         //Hitbox must be enabled for this to happen
         //Calls the 'take damage' function on the colliding object

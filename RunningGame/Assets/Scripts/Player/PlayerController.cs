@@ -64,7 +64,8 @@ public class PlayerController : MonoBehaviour
             jetpackAnim.stopFire();
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        //if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             //Sends message to everything in and under this gameObject (mainly attack controller)
             if (!attacking)

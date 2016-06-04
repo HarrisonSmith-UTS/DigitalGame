@@ -1,0 +1,269 @@
+fileFormatVersion: 2
+guid: 77669ac2b1eac9440a74f7eaa6f7338a
+timeCreated: 1465050506
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: runruncowboyrunningsheet_upscale_0
+    21300002: runruncowboyrunningsheet_upscale_1
+    21300004: runruncowboyrunningsheet_upscale_2
+    21300006: runruncowboyrunningsheet_upscale_3
+    21300008: runruncowboyrunningsheet_upscale_4
+    21300010: runruncowboyrunningsheet_upscale_5
+    21300012: runruncowboyrunningsheet_upscale_6
+    21300014: runruncowboyrunningsheet_upscale_7
+    21300016: runruncowboyrunningsheet_upscale_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: runruncowboyrunningsheet_upscale_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 92}
+        - {x: -99, y: 80}
+        - {x: -99, y: -10}
+        - {x: -36, y: -81}
+        - {x: 58, y: -81}
+        - {x: 58, y: 82}
+        - {x: 51, y: 92}
+    - name: runruncowboyrunningsheet_upscale_1
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 52.272446, y: -14}
+        - {x: 65.272446, y: -14}
+        - {x: 77.272446, y: -9}
+        - {x: 77.272446, y: 18}
+        - {x: 63.272446, y: 49}
+        - {x: 7.2724457, y: 92}
+        - {x: -65.727554, y: 92}
+        - {x: -97.727554, y: 69}
+        - {x: -97.727554, y: -67}
+        - {x: -70.727554, y: -77}
+        - {x: 58.272446, y: -77}
+        - {x: 69.272446, y: -52}
+        - {x: 67.272446, y: -20}
+        - {x: 55.272446, y: -15}
+        - {x: 36.272446, y: -8}
+    - name: runruncowboyrunningsheet_upscale_2
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46.95511, y: 88}
+        - {x: -97.95511, y: 42}
+        - {x: -97.95511, y: -22}
+        - {x: -52.95511, y: -73}
+        - {x: 77.04489, y: -73}
+        - {x: 77.04489, y: 48}
+        - {x: 21.044891, y: 88}
+    - name: runruncowboyrunningsheet_upscale_3
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22.317322, y: -48}
+        - {x: 21.317322, y: -49}
+        - {x: 33.31732, y: -52}
+        - {x: 60.31732, y: -58}
+        - {x: 60.31732, y: 13}
+        - {x: 48.31732, y: 65}
+        - {x: 35.31732, y: 88}
+        - {x: -55.68268, y: 88}
+        - {x: -93.68268, y: 69}
+        - {x: -93.68268, y: 10}
+        - {x: -67.68268, y: -16}
+        - {x: -26.682678, y: -16}
+        - {x: -37.68268, y: -63}
+        - {x: -34.68268, y: -73}
+        - {x: 23.317322, y: -73}
+        - {x: 25.317322, y: -71}
+        - {x: 26.317322, y: -59}
+        - {x: 22.317322, y: -57}
+    - name: runruncowboyrunningsheet_upscale_4
+      rect:
+        serializedVersion: 2
+        x: 1784
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66.91022, y: 53}
+        - {x: -89.91022, y: 43}
+        - {x: -93.91022, y: 34}
+        - {x: -93.91022, y: 9}
+        - {x: -76.91022, y: -15}
+        - {x: -23.910217, y: -81}
+        - {x: 28.089783, y: -81}
+        - {x: 71.08978, y: -74}
+        - {x: 71.08978, y: 9}
+        - {x: 57.089783, y: 79}
+        - {x: 16.089783, y: 92}
+        - {x: -55.910217, y: 92}
+        - {x: -68.91022, y: 63}
+    - name: runruncowboyrunningsheet_upscale_5
+      rect:
+        serializedVersion: 2
+        x: 2230
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.362183, y: 92}
+        - {x: -58.637817, y: 92}
+        - {x: -92.63782, y: 68}
+        - {x: -92.63782, y: -4}
+        - {x: -44.637817, y: -77}
+        - {x: 65.36218, y: -77}
+        - {x: 67.36218, y: -76}
+        - {x: 67.36218, y: -13}
+        - {x: 44.362183, y: 49}
+    - name: runruncowboyrunningsheet_upscale_6
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 49.134644, y: 25}
+        - {x: 36.134644, y: 65}
+        - {x: 0.13464355, y: 92}
+        - {x: -50.865356, y: 92}
+        - {x: -92.86536, y: 55}
+        - {x: -92.86536, y: -63}
+        - {x: 0.13464355, y: -63}
+        - {x: 83.13464, y: -28}
+        - {x: 83.13464, y: -6}
+    - name: runruncowboyrunningsheet_upscale_7
+      rect:
+        serializedVersion: 2
+        x: 3122
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27.407104, y: 88}
+        - {x: -90.592896, y: 88}
+        - {x: -95.592896, y: 72}
+        - {x: -95.592896, y: 3}
+        - {x: -79.592896, y: -52}
+        - {x: -41.592896, y: -66}
+        - {x: 24.407104, y: -66}
+        - {x: 71.407104, y: -57}
+        - {x: 72.407104, y: -56}
+        - {x: 72.407104, y: 47}
+    - name: runruncowboyrunningsheet_upscale_8
+      rect:
+        serializedVersion: 2
+        x: 3568
+        y: 0
+        width: 446.55554
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5.1795654, y: 88}
+        - {x: -42.820435, y: 88}
+        - {x: -67.820435, y: 60}
+        - {x: -63.820435, y: 50}
+        - {x: -59.820435, y: 44}
+        - {x: -45.820435, y: 44}
+        - {x: -91.820435, y: 43}
+        - {x: -95.820435, y: 41}
+        - {x: -95.820435, y: 20}
+        - {x: -89.820435, y: 1}
+        - {x: -53.820435, y: -77}
+        - {x: 26.179565, y: -77}
+        - {x: 53.179565, y: -72}
+        - {x: 54.179565, y: -71}
+        - {x: 54.179565, y: 7}
+        - {x: 39.179565, y: 61}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

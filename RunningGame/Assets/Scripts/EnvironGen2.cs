@@ -15,6 +15,10 @@ public class EnvironGen2 : MonoBehaviour
     private Camera mainCam;
     private float rightSideOfCam;
 
+    //After scene timer exceeded, switches scenes
+    public bool useSceneTimer;
+    public float maxSceneTime;
+
     // Use this for initialization
     void Start()
     {

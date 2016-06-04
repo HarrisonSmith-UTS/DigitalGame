@@ -28,6 +28,7 @@ public class RangedAttackController : MonoBehaviour
     private Collider2D hitbox;
 
     public GameObject projectile;
+    private GameObject spawnedProjectile;
 
     public bool aimAtPlayer;
     private GameObject player;
@@ -105,9 +106,9 @@ public class RangedAttackController : MonoBehaviour
             aimPosition = player.transform.position;
         }
         //Creates projectile
-        projectile = (GameObject)Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
-        projectile.SetActive(true);
-        projectile.GetComponent<Projectile>().Launch(aimPosition);
+        spawnedProjectile = (GameObject)Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
+        spawnedProjectile.SetActive(true);
+        spawnedProjectile.GetComponent<Projectile>().Launch(aimPosition);
     }
 
     void startCooldown()

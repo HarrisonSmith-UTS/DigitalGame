@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour {
 
     public string damagesWhat;
 
+    public bool fixedDirection;
     public Vector3 direction;
     public float speed;
 
@@ -29,12 +30,15 @@ public class Projectile : MonoBehaviour {
     {
         //direction = aimLocation;
         //direction = gameObject.transform.position - aimLocation;
-        direction = aimLocation - gameObject.transform.position;
+        if (!fixedDirection)
+        {
+            direction = aimLocation - gameObject.transform.position;
+        }
         direction.Normalize();
         gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed;
     }
 
-    void OnTriggerEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         //Calls the 'take damage' function on the colliding object
         if (coll.gameObject.tag == damagesWhat)
