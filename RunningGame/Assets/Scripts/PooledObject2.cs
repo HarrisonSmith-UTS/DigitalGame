@@ -16,7 +16,9 @@ public class PooledObject2 : MonoBehaviour
         if (!specifyObjectWidth)
         {
             objectWidth = gameObject.GetComponent<Collider2D>().bounds.size.x;
+            halfObjectWidth = objectWidth / 2;
             print("Size of bounds: " + objectWidth);
+            print("Half size: " + halfObjectWidth);
         }
         //defaultPosition = transform.position;
     }

@@ -21,7 +21,7 @@ public class spriteAnimator : MonoBehaviour
     private bool invulnAnimate;
 
     private SpriteRenderer spriteRenderer;
-
+    public Sprite[] invulnSprites;
 
     // Use this for initialization
     void Start()
@@ -84,12 +84,14 @@ public class spriteAnimator : MonoBehaviour
         }
         //Controls timer for animations
         animTimer += Time.deltaTime;
-
+        
+        //Meant to flash the sprite on and off like old platforming games
+        /*
         if (invulnAnimate)
         {
             spriteRenderer.enabled = !enabled;
         }
-        
+        */
     }
 
     void startSpecialAnim(Sprite[] animSprites)
@@ -114,5 +116,13 @@ public class spriteAnimator : MonoBehaviour
     void enableInvulnAnim(bool enabled)
     {
         invulnAnimate = enabled;
+        if (enabled == true)
+        {
+            startSpecialAnim(invulnSprites);
+        }
+        else
+        {
+            endSpecialAnim();
+        }
     }
 }

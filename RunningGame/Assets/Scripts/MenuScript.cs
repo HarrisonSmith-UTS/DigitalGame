@@ -16,6 +16,12 @@ public class MenuScript : MonoBehaviour
         changeScene(globalConstants.sceneNames[Random.Range(0, globalConstants.sceneNames.Length)]);
     }
 
+    public void reloadScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void exitGame()
     {
         Application.Quit();

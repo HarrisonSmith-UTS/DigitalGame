@@ -35,6 +35,8 @@ public class playerHealth : MonoBehaviour
                 //Invulnerability worn off
                 invulnerable = false;
                 gameObject.SendMessage("enableInvulnAnim", false);
+
+                //SendMessage("endSpecialAnim", takeDamageSprite);
             }
         }
 
@@ -50,12 +52,14 @@ public class playerHealth : MonoBehaviour
         if (!invulnerable)
         {
             currentHealth -= damage;
+            //SendMessage("startSpecialAnim", takeDamageSprite);
         }
 
         if (invulnTime != 0)
         {
             invulnTimer = invulnTime;
-            //gameObject.SendMessage("enableInvulnAnim", true);
+            invulnerable = true;
+            gameObject.SendMessage("enableInvulnAnim", true);
         }
 
         if (currentHealth <= 0)

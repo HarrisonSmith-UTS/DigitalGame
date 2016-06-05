@@ -14,6 +14,8 @@ public class Projectile : MonoBehaviour {
     public Vector3 direction;
     public float speed;
 
+    private 
+
     // Use this for initialization
     void Start()
     {
@@ -44,15 +46,17 @@ public class Projectile : MonoBehaviour {
         if (coll.gameObject.tag == damagesWhat)
         {
             coll.gameObject.SendMessage("takeDamage", damage);
+            if (destroyObjectOnCollision)
+            {
+                Destroy(gameObject);
+            }
         }
-
-        if (destroyObjectOnCollision)
+        //Bug: collides with itself
+        /*
+        if (destroyObjectOnCollision && coll.gameObject.tag != gameObject.tag)
         {
             Destroy(gameObject);
-        }
-        else if (stopAttackOnCollision)
-        {
-        }
+        }*/
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -62,14 +66,10 @@ public class Projectile : MonoBehaviour {
         if (coll.gameObject.tag == damagesWhat)
         {
             coll.gameObject.SendMessage("takeDamage", damage);
-        }
-
-        if (destroyObjectOnCollision)
-        {
-            Destroy(gameObject);
-        }
-        else if (stopAttackOnCollision)
-        {
+            if (destroyObjectOnCollision)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
