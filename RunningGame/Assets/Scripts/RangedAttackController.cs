@@ -32,7 +32,7 @@ public class RangedAttackController : MonoBehaviour
 
     public bool aimAtPlayer;
     private GameObject player;
-    public Vector3 aimPosition;
+    private Vector3 aimPosition;
 
     // Use this for initialization
     void Start()
@@ -91,7 +91,10 @@ public class RangedAttackController : MonoBehaviour
             timer = chargeTime;
             //Tells upper objects not to attack because already attacking.
             SendMessageUpwards("isAttacking", true);
-            SendMessageUpwards("startSpecialAnim", chargeSprites);
+            if (chargeSprites.Length > 0)
+            {
+                SendMessageUpwards("startSpecialAnim", chargeSprites);
+            }
         }
     }
 
@@ -100,7 +103,10 @@ public class RangedAttackController : MonoBehaviour
         charging = false;
         damaging = true;
         timer = damageTime;
-        SendMessageUpwards("startSpecialAnim", damageSprites);
+        if (damageSprites.Length > 0)
+        {
+            SendMessageUpwards("startSpecialAnim", damageSprites);
+        }
         if (aimAtPlayer)
         {
             aimPosition = player.transform.position;
@@ -116,13 +122,9 @@ public class RangedAttackController : MonoBehaviour
         onCooldown = true;
         damaging = false;
         timer = cooldownTime;
-        if (cooldownSprites.Length != 0)
+        if (cooldownSprites.Length > 0)
         {
             SendMessageUpwards("startSpecialAnim", cooldownSprites);
-        }
-        else
-        {
-            SendMessageUpwards("endSpecialAnim");
         }
     }
 

@@ -34,7 +34,9 @@ public class Projectile : MonoBehaviour {
         //direction = gameObject.transform.position - aimLocation;
         if (!fixedDirection)
         {
-            direction = aimLocation - gameObject.transform.position;
+            //direction =  gameObject.transform.position - aimLocation;
+        //direction =  aimLocation + gameObject.transform.position;
+            direction =  aimLocation - gameObject.transform.position;
         }
         direction.Normalize();
         gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed;
