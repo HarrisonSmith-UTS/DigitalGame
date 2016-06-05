@@ -38,15 +38,6 @@ public class RangedAttackController : MonoBehaviour
     void Start()
     {
         //Should select the first Collider2D in the instance
-        hitbox = GetComponent<Collider2D>();
-        if (damageTime != 0)
-        {
-            hitbox.enabled = false;
-        }
-        else
-        {
-            hitbox.enabled = true;
-        }
     }
 
     void OnEnable()

@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
         score = 0;
 
         scrollSpeed = globalConstants.scrollSpeed;
+        
+        Input.ResetInputAxes();
     }
 	
 	void Update ()

@@ -8,6 +8,8 @@ public class MenuScript : MonoBehaviour
     // Use this for initialization
     public void changeScene(string sceneName)
     {
+        Time.timeScale = 1;
+        Input.ResetInputAxes();
         SceneManager.LoadScene(sceneName);
     }
 
@@ -19,6 +21,7 @@ public class MenuScript : MonoBehaviour
     public void reloadScene()
     {
         Time.timeScale = 1;
+        Input.ResetInputAxes();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

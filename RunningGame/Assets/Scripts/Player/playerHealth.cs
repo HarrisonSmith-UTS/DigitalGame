@@ -77,11 +77,12 @@ public class playerHealth : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             //Game over
+            DestroyObject(gameObject);
             Time.timeScale = 0;
             //Show game over screen
             ui.showGameOverScreen();
         }
-        print("OBJECT DESTROYED");
-        DestroyObject(gameObject);
+        //print("OBJECT DESTROYED");
+        //DestroyObject(gameObject);
     }
 }
