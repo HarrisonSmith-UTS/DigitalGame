@@ -1,0 +1,22 @@
+[w] = weighting, how long it will take in hours
+
+==TO DO for game==
+[0.5] - quick bit of research on input bug, see if a fix can be found
+[0.5] - clean up sprites folders
+done  - fix flamethrower bot, apply to all prefabs (doesn't shoot flames properly)
+done  - fix player invuln on cacti / obstacles
+done  - reduce likelihood of repeating sections
+[1.0] - fix player jetpack on update (needs to go under fixed update)
+[2.0] - do some small playtesting, tweak level design
+
+==WOULD LIKE TO DO==
+[1.0] - gundam level
+[0.25]  > gundam bad guy 2 
+[0.25]  > gundam bad guy 1
+[0.5] - music
+[1.0] - switch between levels after a certain amount of time
+[3.0] - add a boss fight
+[2.0] - add a high scores table
+[4.0] - sound effects
+[1.0]  > player sound effects (hurt primarily, jetpack?)
+[3.0] - enemy death animations

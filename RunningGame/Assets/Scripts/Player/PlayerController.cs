@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
         scrollSpeed = globalConstants.scrollSpeed;
         
         Input.ResetInputAxes();
+        grounded = false;
+        attacking = false;
+        jumpButton = false;
     }
 	
 	void Update ()
@@ -48,7 +51,42 @@ public class PlayerController : MonoBehaviour
         //Queue a jump action for when Player next touches land
         jumpButton = Input.GetButton("Jump") ?  true : false;
 
+        
         //If grounded, can perform jump
+        if (jumpButton == true)
+        {
+            jetpackAnim.enableFire();
+            /*if (grounded == true)
+            {
+                jump();
+            }
+            else */if (fuel > 0)
+            {
+                hover();
+            }
+        }
+        else
+        {
+            jetpackAnim.stopFire();
+        }
+        score += Time.deltaTime * scrollSpeed;
+        ui.updateScoreDisplay(score);
+        
+        //if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
+        {
+            //Sends message to everything in and under this gameObject (mainly attack controller)
+            if (!attacking)
+            {
+                BroadcastMessage("startAttack");
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        //If grounded, can perform jump
+        /*
         if (jumpButton == true)
         {
             jetpackAnim.enableFire();
@@ -65,18 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             jetpackAnim.stopFire();
         }
-
-        //if (Input.GetButtonDown("Fire1"))
-        if (Input.GetButton("Fire1"))
-        {
-            //Sends message to everything in and under this gameObject (mainly attack controller)
-            if (!attacking)
-            {
-                BroadcastMessage("startAttack");
-            }
-        }
-        score += Time.deltaTime * scrollSpeed;
-        ui.updateScoreDisplay(score);
+        */
     }
 
     //Called when collision starts

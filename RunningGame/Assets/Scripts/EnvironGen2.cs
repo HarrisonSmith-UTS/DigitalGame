@@ -52,8 +52,13 @@ public class EnvironGen2 : MonoBehaviour
         poolScript = lastCreatedObj.GetComponent<PooledObject2>();
         createPosX += poolScript.halfObjectWidth;
 
+        int oldIndex = enIndex;
         //Chooses random object to create
         enIndex = Random.Range(0, environParts.Length - 1);
+        if (enIndex == oldIndex)
+        {
+            enIndex = Random.Range(0, environParts.Length - 1);
+        }
 
         //Increments by the newly created object
         poolScript = environParts[enIndex].GetComponent<PooledObject2>();

@@ -32,7 +32,7 @@ public class PooledObject2 : MonoBehaviour
     void OnBecameVisible()
     {
         //tell environment generator that it can create another object
-        environScript.objectBecameVisible();
+        //environScript.objectBecameVisible();
     }
 
     void OnBecameInvisible()

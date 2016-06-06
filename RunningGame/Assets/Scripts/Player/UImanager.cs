@@ -4,17 +4,28 @@ using System.Collections;
 
 public class UImanager : MonoBehaviour {
 
-    public Slider fuelBar;
-    public Text healthDisplay;
-    public Text scoreDisplay;
-    public Text finalScoreDisplay;
-    public GameObject gameOverPanel;
+    private Slider fuelBar;
+    private Text healthDisplay;
+    private Text scoreDisplay;
+    private Text finalScoreDisplay;
+    private GameObject gameOverPanel;
 
 	// Use this for initialization
 	void Start ()
     {
-	    
-	}
+        fuelBar = GameObject.Find("fuelBar").GetComponent<Slider>();
+        healthDisplay = GameObject.Find("HealthDisplay").GetComponent<Text>();
+        scoreDisplay = GameObject.Find("scoreDisplay").GetComponent<Text>();
+        finalScoreDisplay = GameObject.Find("finalScoreDisplay").GetComponent<Text>();
+        gameOverPanel = GameObject.Find("gameOverDisplay");
+        //Disable the game over panel for the moment
+        gameOverPanel.SetActive(false);
+    }
+
+    void Awake()
+    {
+        
+    }
 	
 	// Update is called once per frame
 	void Update ()

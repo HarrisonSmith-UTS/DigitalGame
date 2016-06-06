@@ -49,7 +49,7 @@ public class playerHealth : MonoBehaviour
         //Other variables in here such as shielding, powerups etc?
 
         //Basic:
-        if (!invulnerable)
+        if (!invulnerable || damage > health)
         {
             currentHealth -= damage;
             //SendMessage("startSpecialAnim", takeDamageSprite);
@@ -77,7 +77,7 @@ public class playerHealth : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             //Game over
-            DestroyObject(gameObject);
+            //DestroyObject(gameObject);
             Time.timeScale = 0;
             //Show game over screen
             ui.showGameOverScreen();

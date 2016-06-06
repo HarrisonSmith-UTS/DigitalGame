@@ -9,12 +9,10 @@ public class jetpackFlames : MonoBehaviour {
 	// Use this for initialization
 	void Start()
     {
-        fire = gameObject.GetComponent<ParticleSystem>();
         //will not get the correct one
         //Should now get the correct one?
+        fire = GameObject.Find("jetpackfire").GetComponent<ParticleSystem>();
         smoke = GameObject.Find("PlayerSmoke").GetComponent<ParticleSystem>();
-        fire = GameObject.Find("PlayerFlames").GetComponent<ParticleSystem>();
-
         //Change Foreground to the layer you want it to display on 
         //You could prob. make a public variable for this
         //fire.GetComponent<Renderer>().sortingLayerName = "Foreground";
