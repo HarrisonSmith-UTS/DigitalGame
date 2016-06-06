@@ -50,27 +50,6 @@ public class PlayerController : MonoBehaviour
     {        
         //Queue a jump action for when Player next touches land
         jumpButton = Input.GetButton("Jump") ?  true : false;
-
-        
-        //If grounded, can perform jump
-        if (jumpButton == true)
-        {
-            jetpackAnim.enableFire();
-            /*if (grounded == true)
-            {
-                jump();
-            }
-            else */if (fuel > 0)
-            {
-                hover();
-            }
-        }
-        else
-        {
-            jetpackAnim.stopFire();
-        }
-        score += Time.deltaTime * scrollSpeed;
-        ui.updateScoreDisplay(score);
         
         //if (Input.GetButtonDown("Fire1"))
         if (Input.GetButton("Fire1"))
@@ -86,15 +65,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //If grounded, can perform jump
-        /*
         if (jumpButton == true)
         {
             jetpackAnim.enableFire();
-            if (grounded == true)
+            /*if (grounded == true)
             {
                 jump();
             }
-            else if (fuel > 0)
+            else */
+            if (fuel > 0)
             {
                 hover();
             }
@@ -103,7 +82,8 @@ public class PlayerController : MonoBehaviour
         {
             jetpackAnim.stopFire();
         }
-        */
+        score += Time.deltaTime * scrollSpeed;
+        ui.updateScoreDisplay(score);
     }
 
     //Called when collision starts
