@@ -13,6 +13,11 @@ public class enemyController : MonoBehaviour {
     private Transform playerTransform;
     private Transform thisTransform;
 
+    //Count down to next attack
+    private float enemyTimer;
+    //Picks a random time to set the timer to after attacking in seconds
+    public float maxTimerAmount;
+    public float minTimerAmount;
 
     //How much randomness to add to attacks
     //0 = 100% accurate, 1 = maximum amount of randomness
@@ -63,5 +68,11 @@ public class enemyController : MonoBehaviour {
     {
         this.attacking = attacking;
         
+    }
+
+    void resetTimer()
+    {
+        //Sets the 
+        enemyTimer = Random.Range(minTimerAmount, maxTimerAmount);
     }
 }

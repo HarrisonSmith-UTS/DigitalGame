@@ -57,7 +57,7 @@ public class EnvironGen2 : MonoBehaviour
         enIndex = Random.Range(0, environParts.Length - 1);
         if (enIndex == oldIndex)
         {
-            enIndex = Random.Range(0, environParts.Length - 1);
+            enIndex = indexIncrementor(enIndex, environParts.Length);
         }
 
         //Increments by the newly created object
@@ -67,7 +67,15 @@ public class EnvironGen2 : MonoBehaviour
 
         lastCreatedObj = (GameObject)Instantiate(environParts[enIndex], new Vector3(createPosX, createPosY, 0), Quaternion.identity);
     }
-
-    //Pooling stuff
     
+    int indexIncrementor(int i, int length)
+    {
+        i++;
+        if (i > length)
+        {
+            i = 0;
+        }
+        return i;
+    }
+
 }

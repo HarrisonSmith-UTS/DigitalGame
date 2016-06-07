@@ -25,12 +25,11 @@ public class RangedAttackController : MonoBehaviour
     public float cooldownTime;
     public Sprite[] cooldownSprites;
 
-    private Collider2D hitbox;
-
     public GameObject projectile;
     private GameObject spawnedProjectile;
 
     public bool aimAtPlayer;
+    public bool aimAtPlayerWhenCharging;
     private GameObject player;
     private Vector3 aimPosition;
 
@@ -86,6 +85,10 @@ public class RangedAttackController : MonoBehaviour
             {
                 SendMessageUpwards("startSpecialAnim", chargeSprites);
             }
+            if (aimAtPlayerWhenCharging && aimAtPlayer)
+            {
+                aimPosition = player.transform.position;
+            }
         }
     }
 
@@ -98,7 +101,7 @@ public class RangedAttackController : MonoBehaviour
         {
             SendMessageUpwards("startSpecialAnim", damageSprites);
         }
-        if (aimAtPlayer)
+        if (!aimAtPlayerWhenCharging && aimAtPlayer)
         {
             aimPosition = player.transform.position;
         }
@@ -116,6 +119,10 @@ public class RangedAttackController : MonoBehaviour
         if (cooldownSprites.Length > 0)
         {
             SendMessageUpwards("startSpecialAnim", cooldownSprites);
+        }
+        else
+        {
+            SendMessageUpwards("endSpecialAnim");
         }
     }
 

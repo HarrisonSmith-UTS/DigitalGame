@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour {
         //Calls the 'take damage' function on the colliding object
         if (coll.gameObject.tag == damagesWhat)
         {
-            coll.gameObject.SendMessage("takeDamage", damage);
+            coll.gameObject.SendMessage("takeDamage", damage, SendMessageOptions.DontRequireReceiver);
             if (destroyObjectOnCollision)
             {
                 Destroy(gameObject);

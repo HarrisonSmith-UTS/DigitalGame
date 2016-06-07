@@ -27,26 +27,27 @@ public class jetpackFlames : MonoBehaviour {
 
     public void enableFire()
     {
-        /*
-        fire.Play(true);
-        smoke.Play(true);
-        */
-
         
-        fire.enableEmission = true;
-        smoke.enableEmission = true;
+        fire.Play();
+        smoke.Play();
+        
+        //fire.enableEmission = true;
+        //smoke.enableEmission = true;
         
     }
 
     public void stopFire()
     {
-        /*
-        fire.Play(false);
-        fire.Play(false);
-        */
+
+        //fire.Pause();
+        //smoke.Pause();
+
+        fire.Stop();
+        smoke.Stop();
         
-        fire.enableEmission = false;
-        smoke.enableEmission = false;
+        
+        //fire.enableEmission = false;
+        //smoke.enableEmission = false;
         
     }
 }
