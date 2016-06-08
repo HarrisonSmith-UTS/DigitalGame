@@ -36,6 +36,7 @@ public class PooledObject2 : MonoBehaviour
     {
         //tell environment generator that it can create another object
         //environScript.objectBecameVisible();
+        print(gameObject.name + " started");
     }
 
     void FixedUpdate()
