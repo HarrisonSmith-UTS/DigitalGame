@@ -90,11 +90,8 @@ public class damageable : MonoBehaviour {
     {
         if (hasParticles)
         {
-            deathParticles.Play();
-            //Disable hitbox, renderer, and all child objects
-            gameObject.GetComponent<Collider2D>().enabled = false;
-            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.SendMessage("startSpecialAnim", deathSprites);
+
+            //Disable hitbox and all damage dealing child components
             foreach (Transform child in transform)
             {
                 if (child.tag == "Enemy")
@@ -102,6 +99,11 @@ public class damageable : MonoBehaviour {
                     GameObject.Destroy(child.gameObject);
                 }
             }
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            deathParticles.Play();
+            
+            if (deathSprites.Length > 0)
+                gameObject.SendMessage("startSpecialAnim", deathSprites);
 
             //Enable the death particles
             DestroyObject(gameObject, deathTime);

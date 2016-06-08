@@ -123,7 +123,7 @@ public class RangedAttackController : MonoBehaviour
         {
             SendMessageUpwards("startSpecialAnim", cooldownSprites);
         }
-        else
+        else if (chargeSprites.Length > 0 || damageSprites.Length > 0)
         {
             SendMessageUpwards("endSpecialAnim");
         }
