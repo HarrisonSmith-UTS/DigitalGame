@@ -43,6 +43,7 @@ public class UImanager : MonoBehaviour {
     {
         healthBar.minValue = 0;
         healthBar.maxValue = maxHealth;
+        healthBar.value = maxHealth;
     }
 
     //Used to set a maximum value for the fuel bar to use. May set other variables up.
@@ -50,12 +51,13 @@ public class UImanager : MonoBehaviour {
     {
         fuelBar.minValue = 0;
         fuelBar.maxValue = maxFuel;
+        fuelBar.value = maxFuel;
     }
 
     public void updateHealthDisplay(float health)
     {
         healthDisplay.text = Mathf.RoundToInt(health).ToString();
-        healthBar.maxValue = Mathf.RoundToInt(health);
+        healthBar.value = Mathf.RoundToInt(health);
     }
 
     public void updateScoreDisplay(float score)

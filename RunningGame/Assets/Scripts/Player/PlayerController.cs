@@ -70,9 +70,11 @@ public class PlayerController : MonoBehaviour
                 //Pause game
                 Time.timeScale = 0;
                 //display
+                ui.showPause();
             }
             else
             {
+                ui.hidePause();
                 Time.timeScale = 1;
             }
         }

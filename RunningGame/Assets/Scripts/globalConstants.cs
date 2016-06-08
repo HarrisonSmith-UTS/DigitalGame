@@ -10,6 +10,8 @@ public static class globalConstants /*: ScriptableObject*/
     public static float maxFuel = 1;
     public static float fuelDepleteRate = 0.5f;
 
+    public static float playerHealth = 5;
+
     //Add scene names as appropriate.
     public static string[] sceneNames = { "sci-fi", "cowboys", "gundam"};
 }

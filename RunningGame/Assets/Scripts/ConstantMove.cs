@@ -19,6 +19,8 @@ public class ConstantMove : MonoBehaviour {
         gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed;
     }
 	
+    //Should use on visible instead
+
 	// Update is called once per frame
 	void Update ()
     {

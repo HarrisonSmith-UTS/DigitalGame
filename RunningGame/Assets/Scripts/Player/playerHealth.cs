@@ -27,6 +27,7 @@ public class playerHealth : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        health = globalConstants.playerHealth;
         currentHealth = health;
         ui.initHealthBar(health);
         ui.updateHealthDisplay(health);
