@@ -57,7 +57,7 @@ public class EnvironGen2 : MonoBehaviour
         enIndex = Random.Range(0, environParts.Length - 1);
         if (enIndex == oldIndex)
         {
-            enIndex = indexIncrementor(enIndex, environParts.Length);
+            enIndex = indexIncrementor(enIndex, environParts.Length -1);
         }
 
         //Increments by the newly created object

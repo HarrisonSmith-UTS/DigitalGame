@@ -11,7 +11,9 @@ public class bossScrolling : MonoBehaviour
     private float scrollSpeed;
     private Rigidbody2D rigidBody;
     private Transform cameraPos;
-    public float offSet;
+    public float offsetMin;
+    public float offsetMax;
+    private float offset;
     private bool onScreen;
 
     // Use this for initialization
@@ -23,6 +25,7 @@ public class bossScrolling : MonoBehaviour
         scrollSpeed = globalConstants.scrollSpeed;
         cameraPos = Camera.main.transform;
         onScreen = false;
+        offset = Random.Range(offsetMin, offsetMax);
     }
 
     void OnBecameVisible()
@@ -39,7 +42,7 @@ public class bossScrolling : MonoBehaviour
     void FixedUpdate()
     {
         //If object comes within the offset
-        if (!onScreen && gameObject.transform.position.x < cameraPos.position.x + offSet)
+        if (!onScreen && gameObject.transform.position.x < cameraPos.position.x + offset)
         {
             rigidBody.velocity = new Vector2(scrollSpeed, 0);
             onScreen = true;

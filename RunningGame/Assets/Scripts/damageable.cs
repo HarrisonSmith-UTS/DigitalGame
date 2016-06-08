@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Creates new particle system using a prefab??
+
 public class damageable : MonoBehaviour {
 
     public float health;
@@ -11,11 +13,32 @@ public class damageable : MonoBehaviour {
     private float invulnTimer;
     private bool invulnerable;
 
+    public float deathTime;
+    
+    //Should help avoid scripting errors
+    public bool hasParticles;
+    public GameObject damageParticleObj;
+    public GameObject deathParticleObj;
+
+    private ParticleSystem damageParticles;
+    private ParticleSystem deathParticles;
+
+    public Sprite[] deathSprites;
+
 	// Use this for initialization
 	void Start ()
     {
         currentHealth = health;
-	}
+
+        if (hasParticles)
+        {
+            damageParticles = damageParticleObj.GetComponent<ParticleSystem>();
+            deathParticles = deathParticleObj.GetComponent<ParticleSystem>();
+
+            damageParticles.Stop();
+            deathParticles.Stop();
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -34,8 +57,7 @@ public class damageable : MonoBehaviour {
             }
         }
 	}
-
-    //
+    
     void takeDamage(float damage)
     {
         //Other variables in here such as shielding, powerups etc?
@@ -43,6 +65,10 @@ public class damageable : MonoBehaviour {
         //Basic:
         if (!invulnerable)
         {
+            if (hasParticles)
+            {
+                damageParticles.Play();
+            }
             currentHealth -= damage;
         }
 
@@ -62,7 +88,28 @@ public class damageable : MonoBehaviour {
     //Called when health reaches 0 (i.e. object has 'died')
     void die()
     {
-        //print("OBJECT DESTROYED");
-        DestroyObject(gameObject);
+        if (hasParticles)
+        {
+            deathParticles.Play();
+            //Disable hitbox, renderer, and all child objects
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            //gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.SendMessage("startSpecialAnim", deathSprites);
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "Enemy")
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
+            }
+
+            //Enable the death particles
+            DestroyObject(gameObject, deathTime);
+        }
+        else
+        {
+            DestroyObject(gameObject);
+        }
+
     }
 }

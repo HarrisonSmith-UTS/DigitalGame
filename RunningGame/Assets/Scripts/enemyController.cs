@@ -50,7 +50,11 @@ public class enemyController : MonoBehaviour {
         else if (airAttacks.Length > 0 && distanceToPlayer <= detectionRange && !attacking)
         {
             int index = Random.Range(0, airAttacks.Length);
-            airAttacks[index].SendMessage("startAttack");
+            //may slow down code here
+            if (airAttacks[index] != null)
+            {
+                airAttacks[index].SendMessage("startAttack");
+            }
         }
 	}
 
