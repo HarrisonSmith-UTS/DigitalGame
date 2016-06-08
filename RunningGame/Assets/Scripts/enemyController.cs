@@ -45,7 +45,7 @@ public class enemyController : MonoBehaviour {
         {
             //choose random ground attack, use it
             int index = Random.Range(0, groundAttacks.Length);
-            groundAttacks[index].SendMessage("startAttack");
+            groundAttacks[index].SendMessage("startAttack", null, SendMessageOptions.DontRequireReceiver);
         }
         else if (airAttacks.Length > 0 && distanceToPlayer <= detectionRange && !attacking)
         {

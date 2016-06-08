@@ -8,6 +8,7 @@ public class UImanager : MonoBehaviour {
     private Text healthDisplay;
     private Text scoreDisplay;
     private Text finalScoreDisplay;
+    private GameObject pausePanel;
     private GameObject gameOverPanel;
 
 	// Use this for initialization
@@ -17,8 +18,10 @@ public class UImanager : MonoBehaviour {
         healthDisplay = GameObject.Find("HealthDisplay").GetComponent<Text>();
         scoreDisplay = GameObject.Find("scoreDisplay").GetComponent<Text>();
         finalScoreDisplay = GameObject.Find("finalScoreDisplay").GetComponent<Text>();
+        pausePanel = GameObject.Find("pausePanel");
         gameOverPanel = GameObject.Find("gameOverDisplay");
         //Disable the game over panel for the moment
+        pausePanel.SetActive(false);
         gameOverPanel.SetActive(false);
     }
 
@@ -61,5 +64,15 @@ public class UImanager : MonoBehaviour {
     {
         //displays hidden game over elements
         gameOverPanel.SetActive(true);
+    }
+
+    public void showPause()
+    {
+        pausePanel.SetActive(true);
+    }
+
+    public void hidePause()
+    {
+        pausePanel.SetActive(false);
     }
 }

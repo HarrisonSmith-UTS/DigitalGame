@@ -60,6 +60,20 @@ public class PlayerController : MonoBehaviour
                 BroadcastMessage("startAttack");
             }
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (Time.timeScale > 0)
+            {
+                //Pause game
+                Time.timeScale = 0;
+                //display
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+        }
     }
 
     void FixedUpdate()

@@ -14,11 +14,30 @@ public class playerHealth : MonoBehaviour
 
     public UImanager ui;
 
+    //Particles
+    public bool hasParticles;
+    public GameObject damageParticleObj;
+    public GameObject deathParticleObj;
+
+    private ParticleSystem damageParticles;
+    private ParticleSystem deathParticles;
+
+    public Sprite[] deathSprites;
+
     // Use this for initialization
     void Start()
     {
         currentHealth = health;
         ui.updateHealthDisplay(health);
+
+        if (hasParticles)
+        {
+            damageParticles = damageParticleObj.GetComponent<ParticleSystem>();
+            deathParticles = deathParticleObj.GetComponent<ParticleSystem>();
+
+            damageParticles.Stop();
+            deathParticles.Stop();
+        }
     }
 
     // Update is called once per frame
@@ -49,8 +68,12 @@ public class playerHealth : MonoBehaviour
         //Other variables in here such as shielding, powerups etc?
 
         //Basic:
-        if (!invulnerable || damage > health)
+        if (!invulnerable)
         {
+            if (hasParticles)
+            {
+                damageParticles.Play();
+            }
             currentHealth -= damage;
             //SendMessage("startSpecialAnim", takeDamageSprite);
         }
@@ -62,7 +85,7 @@ public class playerHealth : MonoBehaviour
             gameObject.SendMessage("enableInvulnAnim", true);
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 || damage > health)
         {
             //gameObject.SendMessage()
             die();
@@ -74,14 +97,17 @@ public class playerHealth : MonoBehaviour
     //Called when health reaches 0 (i.e. object has 'died')
     void die()
     {
-        if (gameObject.tag == "Player")
+        if (hasParticles)
         {
-            //Game over
-            //DestroyObject(gameObject);
-            Time.timeScale = 0;
-            //Show game over screen
-            ui.showGameOverScreen();
+            deathParticles.Play();
+            if (deathSprites.Length > 0)
+                gameObject.SendMessage("startSpecialAnim", deathSprites);
         }
+        //Game over
+        //DestroyObject(gameObject);
+        Time.timeScale = 0;
+        //Show game over screen
+        ui.showGameOverScreen();
         //print("OBJECT DESTROYED");
         //DestroyObject(gameObject);
     }

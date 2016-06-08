@@ -5,6 +5,7 @@ public class doesPassiveDamage : MonoBehaviour {
 
     public float damage;
     public bool destroyObjectOnCollision;
+    public bool dieOnCollision;
 
     public string damages;
 
@@ -42,7 +43,11 @@ public class doesPassiveDamage : MonoBehaviour {
             coll.gameObject.SendMessage("takeDamage", damage);
         }
 
-        if (destroyObjectOnCollision)
+        if (dieOnCollision)
+        {
+            SendMessage("die");
+        }
+        else if (destroyObjectOnCollision)
         {
             Destroy(gameObject);
         }
