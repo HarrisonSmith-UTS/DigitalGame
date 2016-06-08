@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         jetpackAnim = gameObject.GetComponentInChildren<jetpackFlames>();
+        fuelDepleteRate = globalConstants.fuelDepleteRate;
+        maxFuel = globalConstants.maxFuel;
         fuel = maxFuel;
         ui.initFuelBar(maxFuel);
         ui.updateFuelBar(fuel);
