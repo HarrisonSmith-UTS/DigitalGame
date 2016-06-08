@@ -25,6 +25,7 @@ public class doesPassiveDamage : MonoBehaviour {
         //Calls the 'take damage' function on the colliding object
         if (coll.gameObject.tag == damages)
         {
+            print(gameObject.ToString() + " dealing " + damage + " damage to: " + coll.gameObject.ToString());
             coll.gameObject.SendMessage("takeDamage", damage);
         }
 
@@ -38,18 +39,21 @@ public class doesPassiveDamage : MonoBehaviour {
     {
         //Hitbox must be enabled for this to happen
         //Calls the 'take damage' function on the colliding object
+        
         if (coll.gameObject.tag == damages)
         {
             coll.gameObject.SendMessage("takeDamage", damage);
+            print(gameObject.ToString() + " dealing " + damage + " damage to: " + coll.gameObject.ToString());
+            if (dieOnCollision)
+            {
+                SendMessage("die");
+            }
+            else if (destroyObjectOnCollision)
+            {
+                Destroy(gameObject);
+            }
         }
 
-        if (dieOnCollision)
-        {
-            SendMessage("die");
-        }
-        else if (destroyObjectOnCollision)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }

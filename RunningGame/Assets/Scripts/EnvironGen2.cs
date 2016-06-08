@@ -18,10 +18,15 @@ public class EnvironGen2 : MonoBehaviour
     //After scene timer exceeded, switches scenes
     public bool useSceneTimer;
     public float maxSceneTime;
+    private float sceneTimer;
+
+    //private SceneFadeInOut sceneFader;
 
     // Use this for initialization
     void Start()
     {
+        sceneTimer = 0;
+
         mainCam = Camera.main;
         enIndex = 0;
 
@@ -33,10 +38,21 @@ public class EnvironGen2 : MonoBehaviour
 
     void Update()
     {
-        if (createPosX <  mainCam.transform.position.x + rightSideOfCam)
-        {
-            createObject();
-        }
+            if (createPosX <  mainCam.transform.position.x + rightSideOfCam)
+            {
+
+                if (sceneTimer < maxSceneTime || !useSceneTimer)
+                {
+                    //creates as usual
+                    createObject();
+                }
+                else
+                {
+                    //fade out
+
+                }
+            }
+            sceneTimer += Time.deltaTime;
     }
 
     public void objectBecameVisible()

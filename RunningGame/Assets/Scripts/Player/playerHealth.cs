@@ -28,6 +28,7 @@ public class playerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = health;
+        ui.initHealthBar(health);
         ui.updateHealthDisplay(health);
 
         if (hasParticles)

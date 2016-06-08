@@ -5,16 +5,19 @@ using System.Collections;
 public class UImanager : MonoBehaviour {
 
     private Slider fuelBar;
+    private Slider healthBar;
     private Text healthDisplay;
     private Text scoreDisplay;
     private Text finalScoreDisplay;
     private GameObject pausePanel;
     private GameObject gameOverPanel;
 
+
 	// Use this for initialization
 	void Start ()
     {
         fuelBar = GameObject.Find("fuelBar").GetComponent<Slider>();
+        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         healthDisplay = GameObject.Find("HealthDisplay").GetComponent<Text>();
         scoreDisplay = GameObject.Find("scoreDisplay").GetComponent<Text>();
         finalScoreDisplay = GameObject.Find("finalScoreDisplay").GetComponent<Text>();
@@ -36,6 +39,12 @@ public class UImanager : MonoBehaviour {
 	    
 	}
 
+    public void initHealthBar(float maxHealth)
+    {
+        healthBar.minValue = 0;
+        healthBar.maxValue = maxHealth;
+    }
+
     //Used to set a maximum value for the fuel bar to use. May set other variables up.
     public void initFuelBar(float maxFuel)
     {
@@ -46,6 +55,7 @@ public class UImanager : MonoBehaviour {
     public void updateHealthDisplay(float health)
     {
         healthDisplay.text = Mathf.RoundToInt(health).ToString();
+        healthBar.maxValue = Mathf.RoundToInt(health);
     }
 
     public void updateScoreDisplay(float score)

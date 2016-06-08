@@ -8,11 +8,14 @@ public class PooledObject2 : MonoBehaviour
     public float objectWidth;
     public float halfObjectWidth;
 
+    private Camera cam;
+
     public Vector3 defaultPosition;
 
     // Use this for initialization
     void Start()
     {
+        cam = Camera.main;
         if (!specifyObjectWidth)
         {
             objectWidth = gameObject.GetComponent<Collider2D>().bounds.size.x;
@@ -35,11 +38,20 @@ public class PooledObject2 : MonoBehaviour
         //environScript.objectBecameVisible();
     }
 
+    void FixedUpdate()
+    {
+        if (cam.transform.position.x  - (gameObject.transform.position.x + (cam.aspect * cam.orthographicSize)) > halfObjectWidth)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    /*
     void OnBecameInvisible()
     {
         Destroy(gameObject);
         //return to pool
         //Somehow notify environment generator?
         //environScript.objectBecameInvisible(gameObject);
-    }
+    }*/
 }
