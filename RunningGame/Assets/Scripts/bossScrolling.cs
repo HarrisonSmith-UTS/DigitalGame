@@ -10,7 +10,7 @@ public class bossScrolling : MonoBehaviour
     //private something
     private float scrollSpeed;
     private Rigidbody2D rigidBody;
-    private Vector3 cameraPos;
+    private Transform cameraPos;
     public float offSet;
     private bool onScreen;
 
@@ -18,16 +18,16 @@ public class bossScrolling : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        //GetComponent<Rigidbody2D>().velocity = new Vector2(-gameSpeed, 0);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         //Gets game speed from the generatefloorandceiling section
         scrollSpeed = globalConstants.scrollSpeed;
-        cameraPos = Camera.main.transform.position;
+        cameraPos = Camera.main.transform;
         onScreen = false;
     }
 
     void OnBecameVisible()
     {
-        rigidBody.velocity = new Vector2(scrollSpeed, 0);
+        //rigidBody.velocity = new Vector2(scrollSpeed, 0);
     }
 
     // Update is called once per frame
@@ -38,8 +38,8 @@ public class bossScrolling : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Needs to be replaced/fixed
-        if (!onScreen && gameObject.transform.position.x < cameraPos.x + offSet)
+        //If object comes within the offset
+        if (!onScreen && gameObject.transform.position.x < cameraPos.position.x + offSet)
         {
             rigidBody.velocity = new Vector2(scrollSpeed, 0);
             onScreen = true;

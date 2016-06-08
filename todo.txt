@@ -13,6 +13,8 @@ done  - do some small playtesting, tweak level design
 	o max jetpack fuel
 	o jetpack deplete ratio
 
+[] - fixed player bullet power - cranked down
+
 ==WOULD LIKE TO DO==
 [1.0] - gundam level
 [0.25]  > gundam melee

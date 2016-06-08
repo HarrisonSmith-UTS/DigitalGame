@@ -79,8 +79,9 @@ public class RangedAttackController : MonoBehaviour
             attacking = true;
             charging = true;
             timer = chargeTime;
+            //Used for particle system
+            BroadcastMessage("isCharging", null, SendMessageOptions.DontRequireReceiver);
             //Tells upper objects not to attack because already attacking.
-            SendMessageUpwards("isAttacking", true);
             if (chargeSprites.Length > 0)
             {
                 SendMessageUpwards("startSpecialAnim", chargeSprites);
@@ -97,6 +98,7 @@ public class RangedAttackController : MonoBehaviour
         charging = false;
         damaging = true;
         timer = damageTime;
+        BroadcastMessage("isDamaging", null, SendMessageOptions.DontRequireReceiver);
         if (damageSprites.Length > 0)
         {
             SendMessageUpwards("startSpecialAnim", damageSprites);
@@ -116,6 +118,7 @@ public class RangedAttackController : MonoBehaviour
         onCooldown = true;
         damaging = false;
         timer = cooldownTime;
+        BroadcastMessage("isCooldown", null, SendMessageOptions.DontRequireReceiver);
         if (cooldownSprites.Length > 0)
         {
             SendMessageUpwards("startSpecialAnim", cooldownSprites);

@@ -131,7 +131,7 @@ public class attackController : MonoBehaviour
         //Calls the 'take damage' function on the colliding object
         if (coll.gameObject.tag != "Environment")
         {
-            coll.gameObject.SendMessage("takeDamage", damage);
+            coll.gameObject.SendMessage("takeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
 
         if (destroyObjectOnCollision)
