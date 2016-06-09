@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 ui.hidePause();
-                Time.timeScale = 1;
+                Time.timeScale = globalConstants.globalTimeScale;
             }
         }
     }

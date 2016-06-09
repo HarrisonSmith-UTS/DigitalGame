@@ -33,6 +33,10 @@ public class damageable : MonoBehaviour {
         if (hasParticles)
         {
             damageParticleObj = transform.Find("damage particles").gameObject;
+            if (damageParticleObj == null)
+            {
+                print("NULL found on " + gameObject.name);
+            }
             deathParticleObj = transform.Find("Death Particles").gameObject;
             
             damageParticles = damageParticleObj.GetComponent<ParticleSystem>();
@@ -107,9 +111,10 @@ public class damageable : MonoBehaviour {
             if (deathSprites.Length > 0)
                 gameObject.SendMessage("startSpecialAnim", deathSprites);
             else
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
-            //Enable the death particles
+                //gameObject.SendMessage("startSpecialAnim", deathSprites);
+                //Note: if sprite renderer is disabled, appears to not render any child objects (inc. particles)
+                gameObject.GetComponent<SpriteRenderer>().sprite = null;
+            
             DestroyObject(gameObject, deathTime);
         }
         else

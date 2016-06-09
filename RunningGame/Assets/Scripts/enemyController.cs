@@ -53,7 +53,7 @@ public class enemyController : MonoBehaviour {
             //may slow down code here
             if (airAttacks[index] != null)
             {
-                airAttacks[index].SendMessage("startAttack");
+                airAttacks[index].SendMessage("startAttack", null, SendMessageOptions.DontRequireReceiver);
             }
         }
 	}
