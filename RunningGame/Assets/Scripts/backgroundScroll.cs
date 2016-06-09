@@ -30,7 +30,7 @@ public class backgroundScroll : MonoBehaviour {
         
         cameraTransform = Camera.main.transform;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        spriteWidth = spriteRenderer.sprite.bounds.size.x;
+        spriteWidth = spriteRenderer.sprite.bounds.size.x * transform.localScale.x;
 
         if (isSecondaryOffset)
         {
@@ -51,6 +51,7 @@ public class backgroundScroll : MonoBehaviour {
     {
         if ((transform.position.x + spriteWidth) < cameraTransform.position.x)
         {
+            
             Vector3 newPos = transform.position;
             //2 times the width because a whole width is being covered by the other background object
             newPos.x += 2.0f * spriteWidth;

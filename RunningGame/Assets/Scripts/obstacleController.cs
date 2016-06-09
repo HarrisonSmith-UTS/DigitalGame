@@ -26,6 +26,7 @@ public class obstacleController : MonoBehaviour
         //Calls the 'take damage' function on the player
         if (destroyOnPlayerColl && coll.gameObject.tag == "Player")
         {
+            print(gameObject.ToString() + " dealing " + damage + " damage to: " + coll.gameObject.ToString());
             coll.gameObject.SendMessage("takeDamage", damage);
             Destroy(gameObject);
         }

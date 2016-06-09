@@ -5,7 +5,9 @@ public class doesPassiveDamage : MonoBehaviour {
 
     public float damage;
     public bool destroyObjectOnCollision;
-    public bool stopAttackOnCollision;
+    public bool dieOnCollision;
+
+    public string damages;
 
     // Use this for initialization
     void Start () {
@@ -21,8 +23,9 @@ public class doesPassiveDamage : MonoBehaviour {
     {
         //Hitbox must be enabled for this to happen
         //Calls the 'take damage' function on the colliding object
-        if (coll.gameObject.tag != "Player")
+        if (coll.gameObject.tag == damages)
         {
+            print(gameObject.ToString() + " dealing " + damage + " damage to: " + coll.gameObject.ToString());
             coll.gameObject.SendMessage("takeDamage", damage);
         }
 
@@ -30,8 +33,27 @@ public class doesPassiveDamage : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        else if (stopAttackOnCollision)
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        //Hitbox must be enabled for this to happen
+        //Calls the 'take damage' function on the colliding object
+        
+        if (coll.gameObject.tag == damages)
         {
+            coll.gameObject.SendMessage("takeDamage", damage);
+            print(gameObject.ToString() + " dealing " + damage + " damage to: " + coll.gameObject.ToString());
+            if (dieOnCollision)
+            {
+                SendMessage("die");
+            }
+            else if (destroyObjectOnCollision)
+            {
+                Destroy(gameObject);
+            }
         }
+
+        
     }
 }

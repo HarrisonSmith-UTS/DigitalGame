@@ -1,20 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Creates new particle system using a prefab??
+
 public class damageable : MonoBehaviour {
 
     public float health;
+    public float currentHealth;
 
     //Set to 0 for no invuln time.
     public float invulnTime;
     private float invulnTimer;
     private bool invulnerable;
 
+    public float deathTime;
+    
+    //Should help avoid scripting errors
+    public bool hasParticles;
+    public GameObject damageParticleObj;
+    public GameObject deathParticleObj;
+
+    private ParticleSystem damageParticles;
+    private ParticleSystem deathParticles;
+
+    public Sprite[] deathSprites;
+
 	// Use this for initialization
 	void Start ()
     {
-	    
-	}
+        currentHealth = health;
+
+        if (hasParticles)
+        {
+            damageParticleObj = transform.Find("damage particles").gameObject;
+            if (damageParticleObj == null)
+            {
+                print("NULL found on " + gameObject.name);
+            }
+            deathParticleObj = transform.Find("Death Particles").gameObject;
+            
+            damageParticles = damageParticleObj.GetComponent<ParticleSystem>();
+            deathParticles = deathParticleObj.GetComponent<ParticleSystem>();
+
+            damageParticles.Stop();
+            deathParticles.Stop();
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -32,15 +63,8 @@ public class damageable : MonoBehaviour {
                 gameObject.SendMessage("enableInvulnAnim", false);
             }
         }
-
-	    if (health <= 0)
-        {
-            //gameObject.SendMessage()
-            die();
-        }
 	}
-
-    //
+    
     void takeDamage(float damage)
     {
         //Other variables in here such as shielding, powerups etc?
@@ -48,7 +72,11 @@ public class damageable : MonoBehaviour {
         //Basic:
         if (!invulnerable)
         {
-            health = health - damage;
+            if (hasParticles)
+            {
+                damageParticles.Play();
+            }
+            currentHealth -= damage;
         }
 
         if (invulnTime != 0)
@@ -56,17 +84,43 @@ public class damageable : MonoBehaviour {
             invulnTimer = invulnTime;
             gameObject.SendMessage("enableInvulnAnim", true);
         }
+
+        if (currentHealth <= 0)
+        {
+            //gameObject.SendMessage()
+            die();
+        }
     }
 
     //Called when health reaches 0 (i.e. object has 'died')
     void die()
     {
-        if (gameObject.tag == "Player")
+        if (hasParticles)
         {
-            //Game over
+            //Disable hitbox and all damage dealing child components
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "Enemy")
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            deathParticles.Play();
+
+            if (deathSprites.Length > 0)
+                gameObject.SendMessage("startSpecialAnim", deathSprites);
+            else
+                //gameObject.SendMessage("startSpecialAnim", deathSprites);
+                //Note: if sprite renderer is disabled, appears to not render any child objects (inc. particles)
+                gameObject.GetComponent<SpriteRenderer>().sprite = null;
             
+            DestroyObject(gameObject, deathTime);
         }
-        print("OBJECT DESTROYED");
-        DestroyObject(gameObject);
+        else
+        {
+            DestroyObject(gameObject);
+        }
+
     }
 }

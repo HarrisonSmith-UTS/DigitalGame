@@ -1,0 +1,29 @@
+[w] = weighting, how long it will take in hours
+
+==TO DO for game==
+done  - quick bit of research on input bug, see if a fix can be found
+[0.5] - clean up sprites folders
+done  - fix flamethrower bot, apply to all prefabs (doesn't shoot flames properly)
+done  - fix player invuln on cacti / obstacles
+done  - reduce likelihood of repeating sections
+done - fix player jetpack on update (needs to go under fixed update)
+done  - do some small playtesting, tweak level design
+[1.0] - add more gloabl variables to more easily control the game difficulty
+	o max health
+	o max jetpack fuel
+	o jetpack deplete ratio
+
+[] - fixed player bullet power - cranked down
+
+==WOULD LIKE TO DO==
+[1.0] - gundam level
+[0.25]  > gundam melee
+[0.25]  > gundam ranged
+[0.5]   > big beam gundam
+[0.5] - music
+[1.0] - switch between levels after a certain amount of time
+[3.0] - add a boss fight
+[2.0] - add a high scores table
+[4.0] - sound effects
+[1.0]  > player sound effects (hurt primarily, jetpack?)
+[3.0] - enemy death animations

@@ -13,6 +13,11 @@ public class enemyController : MonoBehaviour {
     private Transform playerTransform;
     private Transform thisTransform;
 
+    //Count down to next attack
+    private float enemyTimer;
+    //Picks a random time to set the timer to after attacking in seconds
+    public float maxTimerAmount;
+    public float minTimerAmount;
 
     //How much randomness to add to attacks
     //0 = 100% accurate, 1 = maximum amount of randomness
@@ -24,7 +29,7 @@ public class enemyController : MonoBehaviour {
     public float attackRange;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
         player = GameObject.Find("Player");
         playerTransform = player.transform;
@@ -32,21 +37,24 @@ public class enemyController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void Update()
     {
-        print("ENEMY: Checking if I can attack player");
         float distanceToPlayer = Vector2.Distance(playerTransform.position, thisTransform.position);
 
-        if (distanceToPlayer <= attackRange && !attacking)
+        if (groundAttacks.Length > 0 && distanceToPlayer <= attackRange && !attacking)
         {
-            print("ENEMY: Attacking player!");
             //choose random ground attack, use it
             int index = Random.Range(0, groundAttacks.Length);
-            groundAttacks[index].SendMessage("startAttack");
+            groundAttacks[index].SendMessage("startAttack", null, SendMessageOptions.DontRequireReceiver);
         }
-        else
+        else if (airAttacks.Length > 0 && distanceToPlayer <= detectionRange && !attacking)
         {
-            print("Couldn't attack player.");
+            int index = Random.Range(0, airAttacks.Length);
+            //may slow down code here
+            if (airAttacks[index] != null)
+            {
+                airAttacks[index].SendMessage("startAttack", null, SendMessageOptions.DontRequireReceiver);
+            }
         }
 	}
 
@@ -64,5 +72,11 @@ public class enemyController : MonoBehaviour {
     {
         this.attacking = attacking;
         
+    }
+
+    void resetTimer()
+    {
+        //Sets the 
+        enemyTimer = Random.Range(minTimerAmount, maxTimerAmount);
     }
 }

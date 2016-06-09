@@ -78,7 +78,10 @@ public class attackController : MonoBehaviour
             timer = chargeTime;
             //Tells upper objects not to attack because already attacking.
             SendMessageUpwards("isAttacking", true);
-            SendMessageUpwards("startSpecialAnim", chargeSprites);
+            if (chargeSprites.Length > 0)
+            {
+                SendMessageUpwards("startSpecialAnim", chargeSprites);
+            }
         }
     }
 
@@ -88,7 +91,10 @@ public class attackController : MonoBehaviour
         damaging = true;
         hitbox.enabled = true;
         timer = damageTime;
-        SendMessageUpwards("startSpecialAnim", damageSprites);
+        if (damageSprites.Length > 0)
+        {
+            SendMessageUpwards("startSpecialAnim", damageSprites);
+        }
     }
 
     void startCooldown()
@@ -97,7 +103,7 @@ public class attackController : MonoBehaviour
         damaging = false;
         hitbox.enabled = false;
         timer = cooldownTime;
-        if (cooldownSprites.Length != 0)
+        if (cooldownSprites.Length > 0)
         {
             SendMessageUpwards("startSpecialAnim", cooldownSprites);
         }
@@ -119,13 +125,33 @@ public class attackController : MonoBehaviour
         //Not currently needed, may be needed later
     }
 
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        //Hitbox must be enabled for this to happen
+        //Calls the 'take damage' function on the colliding object
+        if (coll.gameObject.tag != "Environment")
+        {
+            coll.gameObject.SendMessage("takeDamage", damage, SendMessageOptions.DontRequireReceiver);
+        }
+
+        if (destroyObjectOnCollision)
+        {
+            endAttack();
+            Destroy(gameObject);
+        }
+        else if (stopAttackOnCollision)
+        {
+            endAttack();
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         //Hitbox must be enabled for this to happen
         //Calls the 'take damage' function on the colliding object
         if (coll.gameObject.tag != "Environment")
         {
-            coll.gameObject.SendMessage("takeDamage", damage);
+            coll.gameObject.SendMessage("takeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
 
         if (destroyObjectOnCollision)
