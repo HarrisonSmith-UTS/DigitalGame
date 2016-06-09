@@ -32,6 +32,9 @@ public class damageable : MonoBehaviour {
 
         if (hasParticles)
         {
+            damageParticleObj = transform.Find("damage particles").gameObject;
+            deathParticleObj = transform.Find("Death Particles").gameObject;
+            
             damageParticles = damageParticleObj.GetComponent<ParticleSystem>();
             deathParticles = deathParticleObj.GetComponent<ParticleSystem>();
 
@@ -95,7 +98,7 @@ public class damageable : MonoBehaviour {
             {
                 if (child.tag == "Enemy")
                 {
-                    GameObject.Destroy(child.gameObject);
+                    child.gameObject.SetActive(false);
                 }
             }
             gameObject.GetComponent<Collider2D>().enabled = false;
