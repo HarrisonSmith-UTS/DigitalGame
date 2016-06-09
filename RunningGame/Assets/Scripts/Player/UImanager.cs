@@ -7,11 +7,11 @@ public class UImanager : MonoBehaviour {
     private Slider fuelBar;
     private Slider healthBar;
     private Text healthDisplay;
+    private extraLifeController extraLifeScript;
     private Text scoreDisplay;
     private Text finalScoreDisplay;
     private GameObject pausePanel;
     private GameObject gameOverPanel;
-
 
 	// Use this for initialization
 	void Start ()
@@ -20,6 +20,7 @@ public class UImanager : MonoBehaviour {
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         healthDisplay = GameObject.Find("HealthDisplay").GetComponent<Text>();
         scoreDisplay = GameObject.Find("scoreDisplay").GetComponent<Text>();
+        extraLifeScript = GameObject.Find("ExtraLifeDisplay").GetComponent<extraLifeController>();
         finalScoreDisplay = GameObject.Find("finalScoreDisplay").GetComponent<Text>();
         pausePanel = GameObject.Find("pausePanel");
         gameOverPanel = GameObject.Find("gameOverDisplay");
@@ -86,5 +87,10 @@ public class UImanager : MonoBehaviour {
     public void hidePause()
     {
         pausePanel.SetActive(false);
+    }
+
+    public void playHealthBonus()
+    {
+        extraLifeScript.shootFireworks();
     }
 }

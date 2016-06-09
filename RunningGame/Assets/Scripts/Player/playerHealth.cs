@@ -113,4 +113,13 @@ public class playerHealth : MonoBehaviour
         //print("OBJECT DESTROYED");
         //DestroyObject(gameObject);
     }
+
+    public void addHealth(float i)
+    {
+        if (currentHealth < health)
+        {
+            currentHealth = currentHealth + i;
+            ui.updateHealthDisplay(currentHealth);
+        }
+    }
 }

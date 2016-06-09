@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     public float scoreRate;
 
     private float scrollSpeed;
+
+    private int extraLifeCounter;
+    private float healthBonusAtScore;
     
 
     // Use this for initialization
@@ -37,7 +40,6 @@ public class PlayerController : MonoBehaviour
         fuel = maxFuel;
         ui.initFuelBar(maxFuel);
         ui.updateFuelBar(fuel);
-        //may need to change this later if continuing on scenes
         score = 0;
 
         scrollSpeed = globalConstants.scrollSpeed;
@@ -46,6 +48,9 @@ public class PlayerController : MonoBehaviour
         grounded = false;
         attacking = false;
         jumpButton = false;
+
+        extraLifeCounter = 1;
+        healthBonusAtScore = globalConstants.healthBonusAtScore;
     }
 	
 	void Update ()
@@ -102,6 +107,13 @@ public class PlayerController : MonoBehaviour
         }
         score += Time.deltaTime * scrollSpeed;
         ui.updateScoreDisplay(score);
+        
+        if (score / healthBonusAtScore > extraLifeCounter)
+        {
+            extraLifeCounter++;
+            SendMessage("addHealth", 1);
+            ui.playHealthBonus();
+        }
     }
 
     //Called when collision starts
